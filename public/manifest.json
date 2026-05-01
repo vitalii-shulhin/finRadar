@@ -1,0 +1,26 @@
+{
+  "name": "Finradar - Фінансовий портал України",
+  "short_name": "Finradar",
+  "description": "Ваш радар у світі фінансів - новини, курси валют, кредити, страхування",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#3B82F6",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/icon",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/apple-icon",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ],
+  "categories": ["finance", "news", "utilities"],
+  "lang": "uk",
+  "dir": "ltr"
+}

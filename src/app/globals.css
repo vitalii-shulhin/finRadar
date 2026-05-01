@@ -1,0 +1,86 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-noto-sans: 'Noto Sans', system-ui, sans-serif;
+  --font-raleway: 'Raleway', system-ui, sans-serif;
+}
+
+@layer base {
+  body {
+    @apply text-gray-900;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading;
+  }
+}
+
+@layer components {
+  .container-custom {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .card {
+    @apply bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-200;
+  }
+
+  .btn-primary {
+    @apply bg-primary hover:bg-primary-dark text-white font-semibold py-2 px-6 rounded-lg transition-colors duration-200;
+  }
+
+  .btn-secondary {
+    @apply bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold py-2 px-6 rounded-lg transition-colors duration-200;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+/* Google Translate - Hide translation bar */
+.skiptranslate,
+#goog-gt-tt,
+.goog-te-banner-frame,
+.goog-te-balloon-frame {
+  display: none !important;
+  visibility: hidden !important;
+}
+
+/* Prevent body top offset from Google Translate bar */
+body {
+  top: 0px !important;
+  position: static !important;
+}
+
+/* Hide Google Translate element */
+#google_translate_element {
+  display: none !important;
+}
+
+/* Hide Google Translate select dropdown if it appears */
+.goog-te-combo {
+  display: none !important;
+}
+
+/* Remove Google Translate branding */
+.goog-logo-link {
+  display: none !important;
+}
+
+.goog-te-gadget {
+  color: transparent !important;
+  font-size: 0 !important;
+}
+
+/* Hide "Powered by Google" */
+.goog-te-gadget > span {
+  display: none !important;
+}
+
+.goog-te-gadget .goog-te-combo {
+  display: none !important;
+}
