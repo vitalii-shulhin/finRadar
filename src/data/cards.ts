@@ -22,6 +22,8 @@ export interface BankCard {
   cardUrl?: string;
   cardUrlIOS?: string;
   cardUrlAndroid?: string;
+  essential_characteristics?: string;  // URL to essential characteristics document
+  warning?: string;  // URL to warning/risk disclosure document
 }
 
 // All available cards
@@ -33,16 +35,16 @@ export const CARDS_DATA: BankCard[] = [
     name: 'Premium Card',
     type: 'credit',
     variant: 'Platinum',
-    creditLimit: 'до 300 000 ₴',
-    gracePeriod: 60,
-    cashback: 'до 7%',
-    annualFee: '500 ₴',
-    interestRate: '0.1% (під час пільгового періоду)',
+    creditLimit: 'до 500 000 ₴',
+    gracePeriod: 62,
+    cashback: 'до 20%',
+    annualFee: '0 ₴',
+    interestRate: 'Максимальна ставка по кредиту на місяць 2,99 %',
     rating: 4.5,
     reviews: 678,
     features: [
-      '60 днів без відсотків',
-      'Кешбек до 7%',
+      '62 днів без відсотків',
+      'Кешбек до 20% на 3 категорії',
       'VIP обслуговування',
       'Консьєрж-сервіс',
       'Доступ до бізнес-залів',
@@ -54,6 +56,8 @@ export const CARDS_DATA: BankCard[] = [
     color: 'from-red-500 to-red-600',
     position: 2,
     cardUrl: 'https://rdr.fmcgsd.net/in/offer/1515?aid=91780&source=generalbankua&',
+    essential_characteristics: 'https://rdr.fmcgsd.net/in/offer/1515?aid=91780&source=generalbankua&',
+    warning: 'https://rdr.fmcgsd.net/in/offer/1515?aid=91780&source=generalbankua&',
   },
   {
     id: 2,
@@ -62,7 +66,7 @@ export const CARDS_DATA: BankCard[] = [
     name: 'Startova',
     type: 'credit',
     variant: 'Virtual Card',
-    creditLimit: 'до 300 000 ₴',
+    creditLimit: 'до 500 000 ₴',
     gracePeriod: 92,
     cashback: 'до 30%',
     annualFee: '0 ₴',
@@ -71,6 +75,7 @@ export const CARDS_DATA: BankCard[] = [
     reviews: 543,
     features: [
       'До 92 днів без відсотків',
+      'До 62 днів на зняття готівки та перекази',
       'Кешбек до 30%',
       'Безкоштовні безготівкові поповнення',
       'Безкоштовні перекази між банками України',
@@ -79,6 +84,8 @@ export const CARDS_DATA: BankCard[] = [
     recommended: true,
     color: 'from-blue-500 to-blue-600',
     cardUrl: 'https://rdr.salesdoubler.com.ua/in/offer/8331?aid=91780&source=generalbankua&',
+    essential_characteristics: 'https://alb.ua/about/docs?selectedDocument=%D0%A2%D0%B0%D1%80%D0%B8%D1%84%D0%B8+%22%D0%A1%D1%82%D0%B0%D1%80%D1%82%D0%BE%D0%B2%D0%B0%22&selectedFile=https%3A%2F%2Falb.ua%2Fsa-api%2Fstorage%2Ffiles%2Fec%2Ftaryfy_startova_01.06.2026.pdf',
+    warning: 'https://alb.ua/personal/credit_cards?aid=91780&source=generalbankua&',
   },
   {
     id: 3,
@@ -87,11 +94,11 @@ export const CARDS_DATA: BankCard[] = [
     name: 'Smart',
     type: 'credit',
     variant: 'MasterCard World',
-    creditLimit: 'до 100 000 ₴',
+    creditLimit: 'до 200 000 ₴',
     gracePeriod: 62,
     cashback: '1.5%',
     annualFee: '0 ₴',
-    interestRate: '42% річних (59.24% реальна річна ставка)',
+    interestRate: '52% річних (54.77% реальна річна ставка)',
     rating: 4.3,
     reviews: 412,
     features: [
@@ -103,6 +110,8 @@ export const CARDS_DATA: BankCard[] = [
     ],
     color: 'from-purple-500 to-purple-600',
     cardUrl: 'https://rdr.salesdoubler.com.ua/in/offer/5749?aid=91780&source=generalbankua&',
+    essential_characteristics: 'https://rdr.salesdoubler.com.ua/in/offer/5749?aid=91780&source=generalbankua&',
+    warning: 'https://rdr.salesdoubler.com.ua/in/offer/5749?aid=91780&source=generalbankua&',
   },
   {
     id: 4,
@@ -115,23 +124,27 @@ export const CARDS_DATA: BankCard[] = [
     gracePeriod: 92,
     cashback: '5%',
     annualFee: '0 ₴',
-    interestRate: '39.6% річних',
+    interestRate: '59,32% річних',
     rating: 4.7,
     reviews: 867,
     features: [
       'До 92 днів пільговий період',
       '5% повернення на залишки рахунку',
       '0% комісії за обмін валют',
+      'Номінальна ставка – 3,75% на місяць',
       'Безкоштовне оформлення та обслуговування',
+      'Можливість оформлення без відвідування відділень',
       'Реферальна програма до 50 000 ₴/міс',
     ],
     popular: true,
     color: 'from-green-500 to-green-600',
     cardUrl: 'https://rdr.fmcgsd.net/in/offer/3505?aid=91780&source=generalbankua&',
+    essential_characteristics: 'https://rdr.fmcgsd.net/in/offer/3505?aid=91780&source=generalbankua&',
+    warning: 'https://rdr.fmcgsd.net/in/offer/3505?aid=91780&source=generalbankua&',
   },
   {
     id: 5,
-    bank: '  BANK',
+    bank: 'IZI BANK',
     bankLogo: '/logos/izibank.png',
     name: 'izibank',
     type: 'credit',
@@ -153,6 +166,8 @@ export const CARDS_DATA: BankCard[] = [
     color: 'from-orange-500 to-orange-600',
     cardUrlIOS: 'https://rdr.sdpdl.com.ua/in/offer/2812?aid=91780&source=generalbankua&',
     cardUrlAndroid: 'https://rdr.sdpdl.com.ua/in/offer/2811?aid=91780&source=generalbankua&',
+    essential_characteristics: 'https://rdr.sdpdl.com.ua/in/offer/2812?aid=91780&source=generalbankua&',
+    warning: 'https://rdr.sdpdl.com.ua/in/offer/2812?aid=91780&source=generalbankua&',
   },
 ];
 

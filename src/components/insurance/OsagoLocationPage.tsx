@@ -232,7 +232,7 @@ export default function OsagoLocationPage({ city, lang }: OsagoLocationPageProps
   const [engineVolume, setEngineVolume] = useState(city === 'motorcycle' ? 600 : 1600);
   const [vehicleAge, setVehicleAge] = useState(5);
   const [benefit, setBenefit] = useState<BenefitType>('none');
-  const [showCalculator, setShowCalculator] = useState(true);
+  const [showCalculator, setShowCalculator] = useState(false);
 
   // Filter state
   const [sortBy, setSortBy] = useState<SortOption>('recommended');
@@ -432,12 +432,12 @@ export default function OsagoLocationPage({ city, lang }: OsagoLocationPageProps
             </div>
 
             {/* Main heading */}
-            <h1 className="text-5xl md:text-7xl font-black text-slate-900 mb-6 tracking-tight leading-[1.1]">
+            <h1 className="sm:text-2xl md:text-3xl lg:text-6xl font-black text-slate-900 mb-6 tracking-tight leading-[1.1]">
               {pageTitle}
             </h1>
 
             {/* Subheading */}
-            <p className="text-xl md:text-2xl text-gray-600 mb-8 font-medium max-w-3xl leading-relaxed">
+            <p className="text-sm md:text-sm  text-gray-600 mb-8 font-medium max-w-3xl leading-relaxed">
               {city === 'motorcycle'
                 ? dict.osago.cities.motorcycle.subtitle
                 : dict.osago.cities[city].subtitle
@@ -467,7 +467,7 @@ export default function OsagoLocationPage({ city, lang }: OsagoLocationPageProps
       </section>
 
       {/* Calculator Section - Similar to main OSAGO page */}
-      <section className="relative py-12">
+      <section className="relative py-2">
         <div className="container-custom">
           <div
             className="relative bg-white/95 backdrop-blur-xl rounded-3xl shadow-2xl border border-gray-200 overflow-hidden"
@@ -597,7 +597,7 @@ export default function OsagoLocationPage({ city, lang }: OsagoLocationPageProps
       </section>
 
       {/* Main Content Area with Filters and Insurance Companies */}
-      <section className="relative py-12">
+      <section className="relative py-2">
         <div className="container-custom">
           <div className="flex flex-col lg:flex-row gap-8 lg:gap-12">
             {/* Filters Sidebar */}
@@ -966,7 +966,7 @@ export default function OsagoLocationPage({ city, lang }: OsagoLocationPageProps
       </section>
 
       {/* FAQ Section */}
-      <section className="relative py-12">
+      <section className="relative py-2">
         <div className="container-custom">
           <div
             className="mt-16 relative"
@@ -1032,7 +1032,7 @@ export default function OsagoLocationPage({ city, lang }: OsagoLocationPageProps
       </section>
 
       {/* CTA Section */}
-      <section className="relative py-12">
+      <section className="relative py-2">
         <div className="container-custom">
           <div
             className="mt-16 relative"

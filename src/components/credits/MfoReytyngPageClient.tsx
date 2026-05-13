@@ -18,7 +18,9 @@ import {
   FileText,
   Moon,
   Sun,
-  Users
+  Users,
+  ChevronDown,
+  Info
 } from 'lucide-react';
 import { LOAN_PRODUCTS, type LoanProduct } from '@/data/loanProducts';
 import { getDictionary } from '@/i18n/dictionaries';
@@ -39,6 +41,7 @@ export default function MfoReytyngPageClient({ lang }: MfoReytyngPageClientProps
   const [showFilters, setShowFilters] = useState(false);
   const [minRate, setMinRate] = useState(0);
   const [maxRate, setMaxRate] = useState(2);
+  const [showCalculator, setShowCalculator] = useState(false);
 
   const lenders = Array.from(new Set(LOAN_PRODUCTS.map(loan => loan.lender)));
 
@@ -145,16 +148,24 @@ export default function MfoReytyngPageClient({ lang }: MfoReytyngPageClientProps
           </div>
         </div>
 
-        {/* Calculator and Filters */}
+        {/* Calculator and Filters - Accordion */}
         <div className="bg-white rounded-2xl shadow-xl p-6 md:p-8 mb-8">
-          <div className="flex items-center gap-3 mb-6">
-            <Wallet className="w-8 h-8 text-emerald-600" />
-            <h2 className="text-2xl font-bold font-heading">
-              {lang === 'uk' ? 'Розрахуйте свій кредит' : 'Рассчитайте свой кредит'}
-            </h2>
-          </div>
+          <button
+            onClick={() => setShowCalculator(!showCalculator)}
+            className="w-full flex items-center justify-between mb-6 hover:opacity-80 transition-opacity"
+          >
+            <div className="flex items-center gap-3">
+              <Wallet className="w-8 h-8 text-emerald-600" />
+              <h2 className="text-2xl font-bold font-heading">
+                {lang === 'uk' ? 'Розрахуйте свій кредит' : 'Рассчитайте свой кредит'}
+              </h2>
+            </div>
+            <ChevronDown className={`w-6 h-6 text-emerald-600 transition-transform duration-300 ${showCalculator ? 'rotate-180' : ''}`} />
+          </button>
 
-          <div className="grid md:grid-cols-2 gap-6 mb-6">
+          {showCalculator && (
+            <>
+              <div className="grid md:grid-cols-2 gap-6 mb-6">
             {/* Amount Slider */}
             <div>
               <label className="block text-sm font-semibold text-gray-700 mb-2">
@@ -301,6 +312,8 @@ export default function MfoReytyngPageClient({ lang }: MfoReytyngPageClientProps
               )}
             </div>
           )}
+            </>
+          )}
 
           {/* Sort Options */}
           <div className="flex flex-wrap gap-2 mb-6">
@@ -368,18 +381,16 @@ export default function MfoReytyngPageClient({ lang }: MfoReytyngPageClientProps
 
                     <div className="flex flex-col md:flex-row gap-6">
                       <div className="flex-shrink-0">
-                        <div className="w-28 h-28 bg-white rounded-xl flex items-center justify-center p-2 shadow-sm">
-                          <Image
+                        <Image
                             src={loan.lenderLogo}
                             alt={loan.lender}
-                            width={104}
-                            height={104}
+                            width={256}
+                            height={150}
                             className="object-contain"
-                          />
-                        </div>
+                        />
                       </div>
 
-                      <div className="flex-grow">
+                      <div className="flex-grow w-full">
                         <div className="flex items-start justify-between mb-4">
                           <div>
                             <h3 className="text-2xl font-bold text-gray-900 mb-2">
@@ -512,6 +523,26 @@ export default function MfoReytyngPageClient({ lang }: MfoReytyngPageClientProps
                           </div>
                         </div>
 
+                        {/* NBU Links */}
+                        {(loan.essential_characteristics || loan.warning) && (
+                          <div className="flex flex-wrap gap-3 mb-4 pb-4 border-b border-gray-100">
+                            {loan.essential_characteristics && (
+                              <a href={loan.essential_characteristics} target="_blank" rel="noopener noreferrer"
+                                 className="text-sm font-medium text-blue-600 hover:text-blue-800 hover:underline flex items-center gap-1">
+                                <Info className="w-4 h-4" />
+                                {dict.allCredits.creditCard.essentialCharacteristics}
+                              </a>
+                            )}
+                            {loan.warning && (
+                              <a href={loan.warning} target="_blank" rel="noopener noreferrer"
+                                 className="text-sm font-medium text-blue-600 hover:text-blue-800 hover:underline flex items-center gap-1">
+                                <Info className="w-4 h-4" />
+                                {dict.allCredits.creditCard.warning}
+                              </a>
+                            )}
+                          </div>
+                        )}
+
                         <div className="flex gap-3">
                           <a
                             href={loan.creditUrl || '#'}
@@ -551,11 +582,11 @@ export default function MfoReytyngPageClient({ lang }: MfoReytyngPageClientProps
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href={`/${lang}/calc/credit`} className="bg-white text-emerald-600 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
-              {lang === 'uk' ? 'Кредитний калькулятор' : 'Кредитный калькулятор'}
+              {lang === 'uk' ? 'Всі кредити' : 'Все кридиты'}
             </Link>
-            <button className="bg-transparent border-2 border-white text-white px-6 py-3 rounded-lg font-semibold hover:bg-white hover:text-emerald-600 transition-colors">
-              {lang === 'uk' ? 'Безкоштовна консультація' : 'Бесплатная консультация'}
-            </button>
+            {/*<button className="bg-transparent border-2 border-white text-white px-6 py-3 rounded-lg font-semibold hover:bg-white hover:text-emerald-600 transition-colors">*/}
+            {/*  {lang === 'uk' ? 'Безкоштовна консультація' : 'Бесплатная консультация'}*/}
+            {/*</button>*/}
           </div>
         </div>
 

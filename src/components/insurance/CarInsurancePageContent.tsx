@@ -89,7 +89,7 @@ export default function CarInsurancePageContent({ lang }: CarInsurancePageProps)
   const [engineVolume, setEngineVolume] = useState(1600);
   const [vehicleAge, setVehicleAge] = useState(5);
   const [benefit, setBenefit] = useState<BenefitType>('none');
-  const [showCalculator, setShowCalculator] = useState(true);
+  const [showCalculator, setShowCalculator] = useState(false);
 
   // Filter state
   const [sortBy, setSortBy] = useState<SortOption>('recommended');
@@ -282,10 +282,10 @@ export default function CarInsurancePageContent({ lang }: CarInsurancePageProps)
               </div>
 
               <div className="flex-1">
-                <h1 className="text-5xl lg:text-6xl font-black text-slate-900 tracking-tight mb-4 leading-tight">
+                <h1 className="sm:text-2xl md:text-3xl lg:text-6xl font-black text-slate-900 tracking-tight mb-4 leading-tight">
                   {dict.carInsurance.hero.title}
                 </h1>
-                <p className="text-xl text-gray-600 font-medium max-w-2xl">
+                <p className="text-sm md:text-sm  text-gray-600 font-medium max-w-2xl">
                   {dict.carInsurance.hero.subtitle}
                 </p>
               </div>
@@ -317,10 +317,10 @@ export default function CarInsurancePageContent({ lang }: CarInsurancePageProps)
                     <div className={`inline-flex items-center justify-center w-10 h-10 bg-gradient-to-br ${stat.gradient} rounded-lg text-white mb-3 shadow-lg`}>
                       {stat.icon}
                     </div>
-                    <div className="text-sm font-semibold text-gray-600 uppercase tracking-wide mb-1">
+                    <div className="text-xs font-semibold text-gray-600 uppercase tracking-wide mb-1">
                       {stat.label}
                     </div>
-                    <div className="text-2xl font-black text-slate-900">
+                    <div className="text-base font-black text-slate-900">
                       {stat.value}
                     </div>
                   </div>
@@ -332,7 +332,7 @@ export default function CarInsurancePageContent({ lang }: CarInsurancePageProps)
       </section>
 
       {/* Calculator Section - Premium Design */}
-      <section className="relative py-12">
+      <section className="relative py-2">
         <div className="container-custom">
           <div
             className="relative"
@@ -498,7 +498,7 @@ export default function CarInsurancePageContent({ lang }: CarInsurancePageProps)
       <div className="h-16"></div>
 
       {/* Insurance Companies Section */}
-      <section className="relative py-12">
+      <section className="relative py-2">
         <div className="container-custom">
           <div className="mb-8">
             <h2 className="text-4xl font-black text-slate-900 mb-4">
@@ -673,7 +673,7 @@ export default function CarInsurancePageContent({ lang }: CarInsurancePageProps)
       <div className="h-16"></div>
 
       {/* FAQ Section */}
-      <section className="relative py-12">
+      <section className="relative py-2">
         <div className="container-custom">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-12">

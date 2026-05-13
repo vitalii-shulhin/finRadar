@@ -221,7 +221,7 @@ export default function DepositCalculatorPage({ params }: { params: { lang: Loca
       </div>
 
       {/* Hero Section */}
-      <section className="relative py-12">
+      <section className="relative py-2">
         <div className="container-custom">
           <div
             style={{

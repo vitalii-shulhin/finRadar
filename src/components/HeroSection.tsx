@@ -9,7 +9,7 @@ export default function HeroSection({ lang }: HeroSectionProps) {
   const dict = getDictionary(lang);
 
   return (
-    <section className="bg-gradient-to-r from-primary to-primary-dark text-white py-12">
+    <section className="bg-gradient-to-r from-primary to-primary-dark text-white py-2">
       <div className="container-custom">
         <div className="max-w-3xl">
           <h2 className="text-4xl md:text-5xl font-bold font-heading mb-4">

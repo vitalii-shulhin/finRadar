@@ -252,18 +252,6 @@ n = Number of months
 
 ## 🎨 Design System
 
-### Colors
-```css
-Primary: #33bbfb (Blue)
-Primary Dark: #2196d8
-Primary Light: #5fcbff
-
-Finance Green: #10b981 (Up/Positive)
-Finance Red: #ef4444 (Down/Negative)
-Finance Dark: #1a202c (Headers)
-Gray Scale: 50-900
-```
-
 ### Typography
 - **Headings**: Raleway (400-700)
 - **Body**: Noto Sans (400-700)

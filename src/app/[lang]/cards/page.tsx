@@ -14,7 +14,10 @@ import {
   Shield,
   Sparkles,
   Award,
-  CheckCircle
+  CheckCircle,
+  ChevronDown,
+  ChevronUp,
+  Info
 } from 'lucide-react';
 import { type Locale } from '@/i18n/config';
 import { getDictionary } from '@/i18n/dictionaries';
@@ -33,6 +36,7 @@ export default function CardsPage({
   const [sortBy, setSortBy] = useState<SortOption>('popular');
   const [selectedBanks, setSelectedBanks] = useState<string[]>([]);
   const [showFilters, setShowFilters] = useState(true);
+  const [showFilterPanel, setShowFilterPanel] = useState(false);
 
   const banks = Array.from(new Set(CARDS_DATA.map(card => card.bank)));
 
@@ -186,30 +190,43 @@ export default function CardsPage({
         <div className="container-custom">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
             {/* Sidebar - Refined Filters (3 columns) */}
-            <aside className={`lg:col-span-3 space-y-6 ${showFilters ? '' : 'hidden lg:block'}`}>
+            <aside className={`lg:col-span-4 space-y-6 ${showFilters ? '' : 'hidden lg:block'}`}>
               {/* Filter Panel */}
               <div className="sticky top-8">
                 <div className="bg-white/90 backdrop-blur-xl rounded-2xl shadow-xl border border-gray-100 overflow-hidden">
-                  {/* Header with accent */}
-                  <div className="bg-gradient-to-r from-slate-900 to-slate-800 p-6">
+                  {/* Header with accent - Now Accordion Toggle */}
+                  <button
+                    onClick={() => setShowFilterPanel(!showFilterPanel)}
+                    className="w-full bg-gradient-to-r from-slate-900 to-slate-800 p-6"
+                  >
                     <div className="flex items-center justify-between">
                       <h2 className="text-lg font-black text-white flex items-center gap-2 uppercase tracking-wide">
                         <Filter className="w-4 h-4" />
                         {dict.cards.filters}
                       </h2>
-                      <button
-                        onClick={() => {
-                          setSelectedBanks([]);
-                          setCardType('all');
-                        }}
-                        className="text-xs text-white/70 hover:text-white font-bold uppercase tracking-wider"
-                      >
-                        {dict.cards.clearFilters}
-                      </button>
+                      <div className="flex items-center gap-3">
+                        <button
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            setSelectedBanks([]);
+                            setCardType('all');
+                          }}
+                          className="text-xs text-white/70 hover:text-white font-bold uppercase tracking-wider"
+                        >
+                          {dict.cards.clearFilters}
+                        </button>
+                        {showFilterPanel ? (
+                          <ChevronUp className="w-5 h-5 text-white" />
+                        ) : (
+                          <ChevronDown className="w-5 h-5 text-white/70" />
+                        )}
+                      </div>
                     </div>
-                  </div>
+                  </button>
 
-                  <div className="p-6 space-y-6">
+                  {/* Accordion Content */}
+                  {showFilterPanel && (
+                    <div className="p-6 space-y-6">
                     {/* Card Type Filter - Premium Radio Style */}
                     <div>
                       <h3 className="font-black text-slate-900 mb-4 uppercase tracking-wide text-sm">{dict.cards.filterByType}</h3>
@@ -263,10 +280,12 @@ export default function CardsPage({
                       </div>
                     </div>
                   </div>
+                  )}
                 </div>
 
                 {/* Info Card - Premium Design */}
-                <div className="mt-6 bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl p-6 border-2 border-blue-100/50 shadow-lg">
+                {showFilterPanel && (
+                  <div className="mt-6 bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl p-6 border-2 border-blue-100/50 shadow-lg">
                   <h3 className="font-black mb-4 flex items-center gap-2 text-slate-900 uppercase tracking-wide text-sm">
                     <Shield className="w-5 h-5 text-blue-600" />
                     {dict.cards.security}
@@ -282,11 +301,12 @@ export default function CardsPage({
                     </p>
                   </div>
                 </div>
+                )}
               </div>
             </aside>
 
             {/* Main Content Area (9 columns) */}
-            <div className="lg:col-span-9">
+            <div className="lg:col-span-8">
               {/* Sort Bar - Editorial Style */}
               <div className="bg-white/90 backdrop-blur-xl rounded-2xl shadow-xl border border-gray-100 p-5 mb-8">
                 <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
@@ -348,18 +368,16 @@ export default function CardsPage({
 
                       <div className="p-8">
                         {/* Card Header - Magazine Style */}
-                        <div className="flex items-start justify-between mb-6">
-                          <div className="flex items-start gap-6 flex-1">
-                            <div className="relative w-40 h-40 bg-white rounded-2xl flex items-center justify-center shadow-2xl transform group-hover:scale-110 group-hover:rotate-3 transition-all duration-300 overflow-hidden border-2 border-gray-100">
-                              <Image
-                                src={card.bankLogo}
-                                alt={`${card.bank} logo`}
-                                width={144}
-                                height={144}
-                                className="object-contain p-4"
-                              />
-                            </div>
-                            <div className="flex-1">
+                        <div className="flex flex-col sm:flex-row items-start justify-between mb-6 gap-6">
+                          <div className="flex flex-col sm:flex-row items-start gap-6 flex-1 w-full">
+                            <Image
+                              src={card.bankLogo}
+                              alt={`${card.bank} logo`}
+                              width={256}
+                              height={150}
+                              className="object-contain"
+                            />
+                            <div className="flex-1 w-full">
                               <div className="flex items-center gap-3 mb-2 flex-wrap">
                                 <h3 className="text-2xl font-black text-slate-900">
                                   {card.bank} {card.name}
@@ -448,6 +466,26 @@ export default function CardsPage({
                                 Ставка: <span className="font-black text-slate-900">{card.interestRate}</span>
                               </span>
                             </div>
+                          </div>
+                        )}
+
+                        {/* NBU Links */}
+                        {(card.essential_characteristics || card.warning) && (
+                          <div className="flex flex-wrap gap-3 mb-4 pb-4 border-b border-gray-100">
+                            {card.essential_characteristics && (
+                              <a href={card.essential_characteristics} target="_blank" rel="noopener noreferrer"
+                                 className="text-sm font-medium text-blue-600 hover:text-blue-800 hover:underline flex items-center gap-1">
+                                <Info className="w-4 h-4" />
+                                {dict.allCredits.creditCard.essentialCharacteristics}
+                              </a>
+                            )}
+                            {card.warning && (
+                              <a href={card.warning} target="_blank" rel="noopener noreferrer"
+                                 className="text-sm font-medium text-blue-600 hover:text-blue-800 hover:underline flex items-center gap-1">
+                                <Info className="w-4 h-4" />
+                                {dict.allCredits.creditCard.warning}
+                              </a>
+                            )}
                           </div>
                         )}
 

@@ -1,4 +1,5 @@
 import { CreditCard, PiggyBank, Shield, Percent } from 'lucide-react';
+import Link from 'next/link';
 import { type Locale } from '@/i18n/config';
 import { getDictionary } from '@/i18n/dictionaries';
 
@@ -13,7 +14,7 @@ export default function BankingProducts({ lang }: BankingProductsProps) {
       icon: CreditCard,
       title: dict.home.bankingProducts.items.cards.title,
       description: dict.home.bankingProducts.items.cards.description,
-      link: '#cards',
+      link: `/${lang}/cards`,
       color: 'text-blue-600',
       bg: 'bg-blue-50',
     },
@@ -21,7 +22,7 @@ export default function BankingProducts({ lang }: BankingProductsProps) {
       icon: Percent,
       title: dict.home.bankingProducts.items.loans.title,
       description: dict.home.bankingProducts.items.loans.description,
-      link: '#loans',
+      link: `/${lang}/credits/all`,
       color: 'text-green-600',
       bg: 'bg-green-50',
     },
@@ -29,7 +30,7 @@ export default function BankingProducts({ lang }: BankingProductsProps) {
       icon: PiggyBank,
       title: dict.home.bankingProducts.items.deposits.title,
       description: dict.home.bankingProducts.items.deposits.description,
-      link: '#deposits',
+      link: `/${lang}/calc/deposit`,
       color: 'text-purple-600',
       bg: 'bg-purple-50',
     },
@@ -37,7 +38,7 @@ export default function BankingProducts({ lang }: BankingProductsProps) {
       icon: Shield,
       title: dict.home.bankingProducts.items.insurance.title,
       description: dict.home.bankingProducts.items.insurance.description,
-      link: '#insurance',
+      link: `/${lang}/insurance/car-insurance`,
       color: 'text-orange-600',
       bg: 'bg-orange-50',
     },
@@ -51,7 +52,7 @@ export default function BankingProducts({ lang }: BankingProductsProps) {
         {products.map((product, index) => {
           const Icon = product.icon;
           return (
-            <a
+            <Link
               key={index}
               href={product.link}
               className="flex items-start gap-4 p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-all hover:shadow-md group"
@@ -65,20 +66,20 @@ export default function BankingProducts({ lang }: BankingProductsProps) {
                 </h4>
                 <p className="text-sm text-gray-600">{product.description}</p>
               </div>
-            </a>
+            </Link>
           );
         })}
       </div>
 
-      <div className="mt-6 p-4 bg-gradient-to-r from-primary to-primary-dark rounded-lg text-white">
-        <h4 className="font-semibold mb-2">{dict.home.bankingProducts.consultation.title}</h4>
-        <p className="text-sm text-blue-100 mb-3">
-          {dict.home.bankingProducts.consultation.description}
-        </p>
-        <button className="btn-primary bg-white text-primary hover:bg-gray-100 w-full">
-          {dict.home.bankingProducts.consultation.button}
-        </button>
-      </div>
+      {/*<div className="mt-6 p-4 bg-gradient-to-r from-primary to-primary-dark rounded-lg text-white">*/}
+      {/*  <h4 className="font-semibold mb-2">{dict.home.bankingProducts.consultation.title}</h4>*/}
+      {/*  <p className="text-sm text-blue-100 mb-3">*/}
+      {/*    {dict.home.bankingProducts.consultation.description}*/}
+      {/*  </p>*/}
+      {/*  <button className="btn-primary bg-white text-primary hover:bg-gray-100 w-full">*/}
+      {/*    {dict.home.bankingProducts.consultation.button}*/}
+      {/*  </button>*/}
+      {/*</div>*/}
     </div>
   );
 }

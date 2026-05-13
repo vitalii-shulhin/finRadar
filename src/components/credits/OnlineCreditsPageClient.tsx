@@ -15,7 +15,9 @@ import {
   Shield,
   DollarSign,
   Smartphone,
-  FileText
+  FileText,
+  ChevronDown,
+  Info
 } from 'lucide-react';
 import { LOAN_PRODUCTS, type LoanProduct } from '@/data/loanProducts';
 import { getDictionary } from '@/i18n/dictionaries';
@@ -29,13 +31,15 @@ interface OnlineCreditsPageClientProps {
 
 export default function OnlineCreditsPageClient({ lang }: OnlineCreditsPageClientProps) {
   const dict = getDictionary(lang);
+  const t = dict.onlineCreditsPage;
   const [loanAmount, setLoanAmount] = useState(3000);
-  const [loanTerm, setLoanTerm] = useState(30);
+  const [loanTerm, setLoanTerm] = useState(120);
   const [sortBy, setSortBy] = useState<SortOption>('recommended');
   const [selectedLenders, setSelectedLenders] = useState<string[]>([]);
   const [showFilters, setShowFilters] = useState(false);
   const [minRate, setMinRate] = useState(0);
   const [maxRate, setMaxRate] = useState(2);
+  const [showCalculator, setShowCalculator] = useState(false);
 
   // Get unique lenders
   const lenders = Array.from(new Set(LOAN_PRODUCTS.map(loan => loan.lender)));
@@ -45,18 +49,18 @@ export default function OnlineCreditsPageClient({ lang }: OnlineCreditsPageClien
     let results = LOAN_PRODUCTS;
 
     // Filter by loan amount
-    results = results.filter(loan => loanAmount >= loan.minAmount && loanAmount <= loan.maxAmount);
-
-    // Filter by loan term
-    results = results.filter(loan => loanTerm >= loan.minTerm && loanTerm <= loan.maxTerm);
-
-    // Filter by selected lenders
-    if (selectedLenders.length > 0) {
-      results = results.filter(loan => selectedLenders.includes(loan.lender));
-    }
-
-    // Filter by interest rate
-    results = results.filter(loan => loan.interestRateValue >= minRate && loan.interestRateValue <= maxRate);
+    // results = results.filter(loan => loanAmount >= loan.minAmount && loanAmount <= loan.maxAmount);
+    //
+    // // Filter by loan term
+    // // results = results.filter(loan => loanTerm >= loan.minTerm && loanTerm <= loan.maxTerm);
+    //
+    // // Filter by selected lenders
+    // if (selectedLenders.length > 0) {
+    //   results = results.filter(loan => selectedLenders.includes(loan.lender));
+    // }
+    //
+    // // Filter by interest rate
+    // results = results.filter(loan => loan.interestRateValue >= minRate && loan.interestRateValue <= maxRate);
 
     return results;
   }, [loanAmount, loanTerm, selectedLenders, minRate, maxRate]);
@@ -66,12 +70,12 @@ export default function OnlineCreditsPageClient({ lang }: OnlineCreditsPageClien
     const counts: Record<string, number> = {};
     lenders.forEach(lender => {
       const count = LOAN_PRODUCTS.filter(loan =>
-        loanAmount >= loan.minAmount &&
-        loanAmount <= loan.maxAmount &&
-        loanTerm >= loan.minTerm &&
-        loanTerm <= loan.maxTerm &&
-        loan.interestRateValue >= minRate &&
-        loan.interestRateValue <= maxRate &&
+      //   loanAmount >= loan.minAmount &&
+      //   loanAmount <= loan.maxAmount &&
+      //   loanTerm >= loan.minTerm &&
+      //   loanTerm <= loan.maxTerm &&
+      //   loan.interestRateValue >= minRate &&
+      //   loan.interestRateValue <= maxRate &&
         loan.lender === lender
       ).length;
       counts[lender] = count;
@@ -118,7 +122,7 @@ export default function OnlineCreditsPageClient({ lang }: OnlineCreditsPageClien
     setMinRate(0);
     setMaxRate(2);
     setLoanAmount(3000);
-    setLoanTerm(30);
+    setLoanTerm(120);
   };
 
   const hasActiveFilters = selectedLenders.length > 0 || minRate !== 0 || maxRate !== 2;
@@ -135,21 +139,21 @@ export default function OnlineCreditsPageClient({ lang }: OnlineCreditsPageClien
       <div className="bg-white border-b">
         <div className="container-custom py-4">
           <div className="flex items-center gap-2 text-sm text-gray-600">
-            <Link href="/" className="hover:text-primary">
-              Головна
+            <Link href={`/${lang}`} className="hover:text-primary">
+              {t.breadcrumb.home}
             </Link>
             <span>/</span>
-            <Link href="/credits" className="hover:text-primary">
-              Кредити
+            <Link href={`/${lang}/credits`} className="hover:text-primary">
+              {t.breadcrumb.credits}
             </Link>
             <span>/</span>
-            <span className="text-gray-900">Онлайн кредити</span>
+            <span className="text-gray-900">{t.breadcrumb.onlineCredits}</span>
           </div>
         </div>
       </div>
 
       {/* Header */}
-      <div className="bg-gradient-to-r from-primary to-primary-dark text-white py-12">
+      <div className="bg-gradient-to-r from-primary to-primary-dark text-white py-2">
         <div className="container-custom">
           <div className="flex items-center gap-4 mb-4">
             <div className="w-16 h-16 bg-white/20 rounded-xl flex items-center justify-center">
@@ -157,10 +161,10 @@ export default function OnlineCreditsPageClient({ lang }: OnlineCreditsPageClien
             </div>
             <div>
               <h1 className="text-4xl font-bold font-heading mb-2">
-                Онлайн кредити України 2026
+                {t.header.title}
               </h1>
               <p className="text-xl text-blue-100">
-                {sortedLoans.length} кредитних пропозицій на вигідних умовах
+                {sortedLoans.length} {t.header.subtitle}
               </p>
             </div>
           </div>
@@ -169,123 +173,134 @@ export default function OnlineCreditsPageClient({ lang }: OnlineCreditsPageClien
           <div className="mt-6 overflow-x-auto">
             <div className="flex gap-2 min-w-max">
               <Link
-                href="/credits/online"
+                href={`/${lang}/credits/online`}
                 className="bg-white text-primary px-4 py-2 rounded-lg font-semibold whitespace-nowrap"
               >
-                Онлайн кредити
+                {t.tabs.online}
               </Link>
               <Link
-                href="/credits/microcredits"
+                href={`/${lang}/credits/microcredits`}
                 className="bg-white/10 backdrop-blur-sm text-white hover:bg-white/20 px-4 py-2 rounded-lg font-semibold whitespace-nowrap transition-colors"
               >
-                Мікрокредити
+                {t.tabs.microcredits}
               </Link>
               <Link
-                href="/credits/cash"
+                href={`/${lang}/credits/cash`}
                 className="bg-white/10 backdrop-blur-sm text-white hover:bg-white/20 px-4 py-2 rounded-lg font-semibold whitespace-nowrap transition-colors"
               >
-                Готівкові кредити
+                {t.tabs.cash}
               </Link>
               <Link
-                href="/cards"
+                href={`/${lang}/cards`}
                 className="bg-white/10 backdrop-blur-sm text-white hover:bg-white/20 px-4 py-2 rounded-lg font-semibold whitespace-nowrap transition-colors"
               >
-                Кредитні картки
+                {t.tabs.cards}
               </Link>
               <Link
-                href="/credits/credit-line"
+                href={`/${lang}/credits/credit-line`}
                 className="bg-white/10 backdrop-blur-sm text-white hover:bg-white/20 px-4 py-2 rounded-lg font-semibold whitespace-nowrap transition-colors"
               >
-                Кредитна лінія
+                {t.tabs.creditLine}
               </Link>
               <Link
-                href="/credits/refinancing"
+                href={`/${lang}/credits/refinancing`}
                 className="bg-white/10 backdrop-blur-sm text-white hover:bg-white/20 px-4 py-2 rounded-lg font-semibold whitespace-nowrap transition-colors"
               >
-                Рефінансування
+                {t.tabs.refinancing}
               </Link>
               <Link
-                href="/credits/secured"
+                href={`/${lang}/credits/secured`}
                 className="bg-white/10 backdrop-blur-sm text-white hover:bg-white/20 px-4 py-2 rounded-lg font-semibold whitespace-nowrap transition-colors"
               >
-                Під заставу
+                {t.tabs.secured}
               </Link>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Loan Calculator Form */}
+      {/* Loan Calculator Form - Accordion */}
       <div className="bg-white border-b shadow-sm">
-        <div className="container-custom py-8">
+        <div className="container-custom py-4">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-2xl font-bold mb-6 flex items-center gap-2">
-              <DollarSign className="w-6 h-6 text-primary" />
-              Розрахуйте свій кредит
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {/* Loan Amount */}
-              <div>
-                <label className="block text-sm font-semibold mb-3">
-                  Сума кредиту
-                </label>
-                <input
-                  type="range"
-                  min="100"
-                  max="100000"
-                  step="100"
-                  value={loanAmount}
-                  onChange={(e) => setLoanAmount(Number(e.target.value))}
-                  className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-primary"
-                />
-                <div className="flex justify-between items-center mt-2">
-                  <span className="text-sm text-gray-600">100 ₴</span>
-                  <div className="text-2xl font-bold text-primary">
-                    {loanAmount.toLocaleString()} ₴
+            <button
+              onClick={() => setShowCalculator(!showCalculator)}
+              className="w-full flex items-center justify-between p-4 hover:bg-gray-50 rounded-lg transition-colors"
+            >
+              <h2 className="text-2xl font-bold flex items-center gap-2">
+                <DollarSign className="w-6 h-6 text-primary" />
+                {t.calculator.title}
+              </h2>
+              <ChevronDown className={`w-6 h-6 text-primary transition-transform duration-300 ${showCalculator ? 'rotate-180' : ''}`} />
+            </button>
+
+            {showCalculator && (
+              <div className="mt-4 pt-4 border-t">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {/* Loan Amount */}
+                  <div>
+                    <label className="block text-sm font-semibold mb-3">
+                      {t.calculator.amount}
+                    </label>
+                    <input
+                      type="range"
+                      min="100"
+                      max="100000"
+                      step="100"
+                      value={loanAmount}
+                      onChange={(e) => setLoanAmount(Number(e.target.value))}
+                      className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-primary"
+                    />
+                    <div className="flex justify-between items-center mt-2">
+                      <span className="text-sm text-gray-600">100 ₴</span>
+                      <div className="text-2xl font-bold text-primary">
+                        {loanAmount.toLocaleString()} ₴
+                      </div>
+                      <span className="text-sm text-gray-600">100 000 ₴</span>
+                    </div>
                   </div>
-                  <span className="text-sm text-gray-600">100 000 ₴</span>
+
+                  {/* Loan Term */}
+                  <div>
+                    <label className="block text-sm font-semibold mb-3">
+                      {t.calculator.term}
+                    </label>
+                    <input
+                      type="range"
+                      min="1"
+                      max="365"
+                      step="1"
+                      value={loanTerm}
+                      onChange={(e) => setLoanTerm(Number(e.target.value))}
+                      className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-primary"
+                    />
+                    <div className="flex justify-between items-center mt-2">
+                      <span className="text-sm text-gray-600">1 {t.calculator.day}</span>
+                      <div className="text-2xl font-bold text-primary">
+                        {loanTerm} {loanTerm === 1 ? t.calculator.day : loanTerm < 5 ? t.calculator.days : t.calculator.daysMany}
+                      </div>
+                      <span className="text-sm text-gray-600">365 {t.calculator.daysMany}</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Results Summary */}
+                <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-4">
+                  <div className="bg-gradient-to-br from-primary to-primary-dark text-white p-4 rounded-lg">
+                    <div className="text-sm opacity-90 mb-1">{t.calculator.results.amount}</div>
+                    <div className="text-2xl font-bold">{loanAmount.toLocaleString()} ₴</div>
+                  </div>
+                  <div className="bg-gradient-to-br from-green-500 to-green-600 text-white p-4 rounded-lg">
+                    <div className="text-sm opacity-90 mb-1">{t.calculator.results.term}</div>
+                    <div className="text-2xl font-bold">{loanTerm} {t.calculator.daysMany}</div>
+                  </div>
+                  <div className="bg-gradient-to-br from-orange-500 to-orange-600 text-white p-4 rounded-lg">
+                    <div className="text-sm opacity-90 mb-1">{t.calculator.results.found}</div>
+                    <div className="text-2xl font-bold">{sortedLoans.length}</div>
+                  </div>
                 </div>
               </div>
-
-              {/* Loan Term */}
-              <div>
-                <label className="block text-sm font-semibold mb-3">
-                  Термін кредиту (днів)
-                </label>
-                <input
-                  type="range"
-                  min="1"
-                  max="365"
-                  step="1"
-                  value={loanTerm}
-                  onChange={(e) => setLoanTerm(Number(e.target.value))}
-                  className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-primary"
-                />
-                <div className="flex justify-between items-center mt-2">
-                  <span className="text-sm text-gray-600">1 день</span>
-                  <div className="text-2xl font-bold text-primary">
-                    {loanTerm} {loanTerm === 1 ? 'день' : loanTerm < 5 ? 'дні' : 'днів'}
-                  </div>
-                  <span className="text-sm text-gray-600">365 днів</span>
-                </div>
-              </div>
-            </div>
-
-            {/* Results Summary */}
-            <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-4">
-              <div className="bg-gradient-to-br from-primary to-primary-dark text-white p-4 rounded-lg">
-                <div className="text-sm opacity-90 mb-1">Сума кредиту</div>
-                <div className="text-2xl font-bold">{loanAmount.toLocaleString()} ₴</div>
-              </div>
-              <div className="bg-gradient-to-br from-green-500 to-green-600 text-white p-4 rounded-lg">
-                <div className="text-sm opacity-90 mb-1">Термін</div>
-                <div className="text-2xl font-bold">{loanTerm} днів</div>
-              </div>
-              <div className="bg-gradient-to-br from-orange-500 to-orange-600 text-white p-4 rounded-lg">
-                <div className="text-sm opacity-90 mb-1">Знайдено пропозицій</div>
-                <div className="text-2xl font-bold">{sortedLoans.length}</div>
-              </div>
-            </div>
+            )}
           </div>
         </div>
       </div>
@@ -299,7 +314,7 @@ export default function OnlineCreditsPageClient({ lang }: OnlineCreditsPageClien
               <div className="flex items-center justify-between mb-4">
                 <h2 className="text-xl font-semibold flex items-center gap-2">
                   <Filter className="w-5 h-5" />
-                  Фільтри
+                  {t.filters.title}
                   {hasActiveFilters && (
                     <span className="bg-primary text-white text-xs px-2 py-1 rounded-full">
                       {(selectedLenders.length > 0 ? 1 : 0) + (minRate !== 0 || maxRate !== 2 ? 1 : 0)}
@@ -311,14 +326,14 @@ export default function OnlineCreditsPageClient({ lang }: OnlineCreditsPageClien
                   className="text-sm text-primary hover:text-primary-dark disabled:opacity-50 disabled:cursor-not-allowed"
                   disabled={!hasActiveFilters}
                 >
-                  Скинути все
+                  {t.filters.resetAll}
                 </button>
               </div>
 
               {/* Interest Rate Filter */}
               <div className="mb-6">
                 <h3 className="font-semibold mb-3 flex items-center justify-between">
-                  <span>Відсоткова ставка (% на день)</span>
+                  <span>{t.filters.interestRate}</span>
                   {(minRate !== 0 || maxRate !== 2) && (
                     <button
                       onClick={() => {
@@ -327,7 +342,7 @@ export default function OnlineCreditsPageClient({ lang }: OnlineCreditsPageClien
                       }}
                       className="text-xs text-primary hover:text-primary-dark"
                     >
-                      Скинути
+                      {t.filters.reset}
                     </button>
                   )}
                 </h3>
@@ -338,7 +353,7 @@ export default function OnlineCreditsPageClient({ lang }: OnlineCreditsPageClien
                 }`}>
                   <div>
                     <div className="flex items-center justify-between mb-1">
-                      <label className="text-sm text-gray-600">Від</label>
+                      <label className="text-sm text-gray-600">{t.filters.from}</label>
                       <span className="text-sm font-semibold text-primary">{minRate}%</span>
                     </div>
                     <input
@@ -353,7 +368,7 @@ export default function OnlineCreditsPageClient({ lang }: OnlineCreditsPageClien
                   </div>
                   <div>
                     <div className="flex items-center justify-between mb-1">
-                      <label className="text-sm text-gray-600">До</label>
+                      <label className="text-sm text-gray-600">{t.filters.to}</label>
                       <span className="text-sm font-semibold text-primary">{maxRate}%</span>
                     </div>
                     <input
@@ -372,10 +387,10 @@ export default function OnlineCreditsPageClient({ lang }: OnlineCreditsPageClien
               {/* Lender Filter */}
               <div>
                 <h3 className="font-semibold mb-3">
-                  Кредитор
+                  {t.filters.lender}
                   {selectedLenders.length > 0 && (
                     <span className="ml-2 text-xs text-primary">
-                      ({selectedLenders.length} обрано)
+                      ({selectedLenders.length} {t.filters.selected})
                     </span>
                   )}
                 </h3>
@@ -419,13 +434,13 @@ export default function OnlineCreditsPageClient({ lang }: OnlineCreditsPageClien
             <div className="card p-6 bg-blue-50 border-blue-200">
               <h3 className="font-semibold mb-3 flex items-center gap-2">
                 <Shield className="w-5 h-5 text-blue-600" />
-                Важлива інформація
+                {t.info.title}
               </h3>
               <div className="text-sm text-gray-700 space-y-2">
-                <p>✓ Всі кредитори ліцензовані НБУ</p>
-                <p>✓ Відсотки розраховуються щодня</p>
-                <p>✓ Перший кредит часто безкоштовний</p>
-                <p>⚠️ Не беріть більше, ніж можете повернути</p>
+                <p>{t.info.licensed}</p>
+                <p>{t.info.daily}</p>
+                <p>{t.info.firstFree}</p>
+                <p>{t.info.warning}</p>
               </div>
             </div>
           </aside>
@@ -436,7 +451,7 @@ export default function OnlineCreditsPageClient({ lang }: OnlineCreditsPageClien
             {hasActiveFilters && (
               <div className="card p-4 mb-4">
                 <div className="flex items-center gap-2 flex-wrap">
-                  <span className="text-sm text-gray-600 font-medium">Активні фільтри:</span>
+                  <span className="text-sm text-gray-600 font-medium">{t.filters.activeFilters}</span>
                   {selectedLenders.map(lender => (
                     <button
                       key={lender}
@@ -455,7 +470,7 @@ export default function OnlineCreditsPageClient({ lang }: OnlineCreditsPageClien
                       }}
                       className="inline-flex items-center gap-1 bg-orange-500 text-white text-sm px-3 py-1 rounded-full hover:bg-orange-600 transition-colors"
                     >
-                      Ставка: {minRate}% - {maxRate}%
+                      {t.filters.rate}: {minRate}% - {maxRate}%
                       <span className="text-xs">✕</span>
                     </button>
                   )}
@@ -463,7 +478,7 @@ export default function OnlineCreditsPageClient({ lang }: OnlineCreditsPageClien
                     onClick={resetAllFilters}
                     className="text-sm text-primary hover:text-primary-dark font-medium ml-auto"
                   >
-                    Скинути все
+                    {t.filters.resetAll}
                   </button>
                 </div>
               </div>
@@ -474,24 +489,24 @@ export default function OnlineCreditsPageClient({ lang }: OnlineCreditsPageClien
               <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
                 <div className="flex items-center gap-4 flex-wrap">
                   <div className="flex items-center gap-2">
-                    <span className="text-sm text-gray-600">Знайдено:</span>
+                    <span className="text-sm text-gray-600">{t.sort.found}</span>
                     <span className="text-lg font-bold text-primary">
-                      {sortedLoans.length} {sortedLoans.length === 1 ? 'пропозиція' : sortedLoans.length < 5 ? 'пропозиції' : 'пропозицій'}
+                      {sortedLoans.length} {sortedLoans.length === 1 ? t.sort.offer : sortedLoans.length < 5 ? t.sort.offers : t.sort.offersMany}
                     </span>
                   </div>
                   <div className="h-6 w-px bg-gray-300"></div>
                   <div className="flex items-center gap-2">
-                    <span className="text-sm text-gray-600">Сортувати:</span>
+                    <span className="text-sm text-gray-600">{t.sort.sortBy}</span>
                     <select
                       value={sortBy}
                       onChange={(e) => setSortBy(e.target.value as SortOption)}
                       className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
                     >
-                      <option value="recommended">Рекомендовані</option>
-                      <option value="rate">За ставкою</option>
-                      <option value="amount">За максимальною сумою</option>
-                      <option value="approval">За швидкістю схвалення</option>
-                      <option value="time">За часом видачі</option>
+                      <option value="recommended">{t.sort.recommended}</option>
+                      <option value="rate">{t.sort.rate}</option>
+                      <option value="amount">{t.sort.amount}</option>
+                      <option value="approval">{t.sort.approval}</option>
+                      <option value="time">{t.sort.time}</option>
                     </select>
                   </div>
                 </div>
@@ -500,7 +515,7 @@ export default function OnlineCreditsPageClient({ lang }: OnlineCreditsPageClien
                   className="lg:hidden btn-secondary flex items-center gap-2"
                 >
                   <Filter className="w-4 h-4" />
-                  {showFilters ? 'Сховати фільтри' : 'Показати фільтри'}
+                  {showFilters ? t.sort.hideFilters : t.sort.showFilters}
                 </button>
               </div>
             </div>
@@ -509,18 +524,18 @@ export default function OnlineCreditsPageClient({ lang }: OnlineCreditsPageClien
             {sortedLoans.length === 0 ? (
               <div className="card p-12 text-center">
                 <Wallet className="w-16 h-16 text-gray-400 mx-auto mb-4" />
-                <h3 className="text-xl font-semibold mb-2">Нічого не знайдено</h3>
+                <h3 className="text-xl font-semibold mb-2">{t.empty.title}</h3>
                 <p className="text-gray-600 mb-4">
-                  За заданими параметрами не знайдено жодної пропозиції
+                  {t.empty.description}
                 </p>
                 <div className="text-sm text-gray-600 mb-4">
-                  <p>Поточні параметри:</p>
+                  <p>{t.empty.currentParams}</p>
                   <ul className="mt-2 space-y-1">
-                    <li>Сума: <strong>{loanAmount.toLocaleString()} ₴</strong></li>
-                    <li>Термін: <strong>{loanTerm} днів</strong></li>
-                    <li>Ставка: <strong>{minRate}% - {maxRate}%</strong></li>
+                    <li>{t.empty.amount} <strong>{loanAmount.toLocaleString()} ₴</strong></li>
+                    <li>{t.empty.term} <strong>{loanTerm} {t.calculator.daysMany}</strong></li>
+                    <li>{t.empty.rate} <strong>{minRate}% - {maxRate}%</strong></li>
                     {selectedLenders.length > 0 && (
-                      <li>Кредитори: <strong>{selectedLenders.join(', ')}</strong></li>
+                      <li>{t.empty.lenders} <strong>{selectedLenders.join(', ')}</strong></li>
                     )}
                   </ul>
                 </div>
@@ -528,7 +543,7 @@ export default function OnlineCreditsPageClient({ lang }: OnlineCreditsPageClien
                   onClick={resetAllFilters}
                   className="btn-primary"
                 >
-                  Скинути всі фільтри
+                  {t.empty.resetFilters}
                 </button>
               </div>
             ) : (
@@ -543,30 +558,28 @@ export default function OnlineCreditsPageClient({ lang }: OnlineCreditsPageClien
                     >
                       <div className="p-6">
                         {/* Loan Header */}
-                        <div className="flex items-start justify-between mb-4">
-                          <div className="flex items-start gap-4 flex-1">
-                            <div className={`w-28 h-28 bg-gradient-to-br ${loan.color} rounded-xl flex items-center justify-center shadow-lg flex-shrink-0 relative overflow-hidden`}>
-                              <Image
-                                src={loan.lenderLogo}
-                                alt={loan.lender}
-                                width={112}
-                                height={112}
-                                className="object-contain p-2"
-                              />
-                            </div>
-                            <div className="flex-1">
+                        <div className="flex flex-col sm:flex-row items-start justify-between mb-4 gap-4">
+                          <div className="flex flex-col sm:flex-row items-start gap-6 flex-1 w-full">
+                            <Image
+                              src={loan.lenderLogo}
+                              alt={loan.lender}
+                              width={256}
+                              height={150}
+                              className="object-contain"
+                            />
+                            <div className="flex-1 w-full">
                               <div className="flex items-center gap-2 mb-1 flex-wrap">
                                 <h3 className="text-xl font-semibold">
                                   {loan.lender}
                                 </h3>
                                 {loan.recommended && (
                                   <span className="bg-primary text-white text-xs px-2 py-1 rounded font-semibold">
-                                    Рекомендуємо
+                                    {t.loan.recommended}
                                   </span>
                                 )}
                                 {loan.popular && (
                                   <span className="bg-orange-100 text-orange-600 text-xs px-2 py-1 rounded font-semibold">
-                                    Популярний
+                                    {t.loan.popular}
                                   </span>
                                 )}
                               </div>
@@ -579,7 +592,7 @@ export default function OnlineCreditsPageClient({ lang }: OnlineCreditsPageClien
                                 </div>
                                 <div className="flex items-center gap-1 text-green-600">
                                   <CheckCircle className="w-4 h-4" />
-                                  <span>{loan.approvalRate}% схвалень</span>
+                                  <span>{loan.approvalRate}% {t.loan.approvalRate}</span>
                                 </div>
                               </div>
                             </div>
@@ -589,7 +602,7 @@ export default function OnlineCreditsPageClient({ lang }: OnlineCreditsPageClien
                         {/* Loan Details Grid */}
                         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4">
                           <div className="bg-blue-50 p-3 rounded-lg">
-                            <div className="text-xs text-gray-600 mb-1">Сума</div>
+                            <div className="text-xs text-gray-600 mb-1">{t.loan.amount}</div>
                             <div className="font-semibold text-primary text-sm">
                               {loan.minAmount.toLocaleString()} - {loan.maxAmount.toLocaleString()} ₴
                             </div>
@@ -597,16 +610,16 @@ export default function OnlineCreditsPageClient({ lang }: OnlineCreditsPageClien
                           <div className="bg-green-50 p-3 rounded-lg">
                             <div className="text-xs text-gray-600 mb-1 flex items-center gap-1">
                               <Calendar className="w-3 h-3" />
-                              Термін
+                              {t.loan.term}
                             </div>
                             <div className="font-semibold text-green-600 text-sm">
-                              {loan.minTerm} - {loan.maxTerm} днів
+                              {loan.minTerm} - {loan.maxTerm} {t.calculator.daysMany}
                             </div>
                           </div>
                           <div className="bg-orange-50 p-3 rounded-lg">
                             <div className="text-xs text-gray-600 mb-1 flex items-center gap-1">
                               <Percent className="w-3 h-3" />
-                              Ставка
+                              {t.loan.rate}
                             </div>
                             <div className="font-semibold text-orange-600 text-sm">
                               {loan.interestRate}
@@ -615,7 +628,7 @@ export default function OnlineCreditsPageClient({ lang }: OnlineCreditsPageClien
                           <div className="bg-purple-50 p-3 rounded-lg">
                             <div className="text-xs text-gray-600 mb-1 flex items-center gap-1">
                               <Clock className="w-3 h-3" />
-                              Схвалення
+                              {t.loan.approval}
                             </div>
                             <div className="font-semibold text-purple-600 text-sm">
                               {loan.approvalTime}
@@ -627,13 +640,13 @@ export default function OnlineCreditsPageClient({ lang }: OnlineCreditsPageClien
                         <div className="bg-gradient-to-r from-primary to-primary-dark text-white p-4 rounded-lg mb-4">
                           <div className="flex items-center justify-between">
                             <div>
-                              <div className="text-sm opacity-90 mb-1">Орієнтовний платіж на місяць</div>
+                              <div className="text-sm opacity-90 mb-1">{t.loan.monthlyPayment}</div>
                               <div className="text-3xl font-bold">{monthlyPayment.toLocaleString()} ₴</div>
                             </div>
                             <Smartphone className="w-12 h-12 opacity-20" />
                           </div>
                           <div className="text-xs opacity-75 mt-2">
-                            * Розрахунок приблизний. Точні умови дізнавайтесь у кредитора
+                            {t.loan.disclaimer}
                           </div>
                         </div>
 
@@ -641,7 +654,7 @@ export default function OnlineCreditsPageClient({ lang }: OnlineCreditsPageClien
                         <div className="mb-4">
                           <h4 className="text-sm font-semibold mb-2 flex items-center gap-2">
                             <CheckCircle className="w-4 h-4 text-green-600" />
-                            Переваги
+                            {t.loan.advantages}
                           </h4>
                           <ul className="grid grid-cols-1 md:grid-cols-2 gap-2">
                             {loan.features.map((feature, idx) => (
@@ -657,7 +670,7 @@ export default function OnlineCreditsPageClient({ lang }: OnlineCreditsPageClien
                         <div className="bg-gray-50 rounded-lg p-4 mb-4">
                           <h4 className="text-sm font-semibold mb-2 flex items-center gap-2">
                             <FileText className="w-4 h-4 text-gray-600" />
-                            Вимоги
+                            {t.loan.requirements}
                           </h4>
                           <ul className="grid grid-cols-1 md:grid-cols-2 gap-2">
                             {loan.requirements.map((req, idx) => (
@@ -669,6 +682,34 @@ export default function OnlineCreditsPageClient({ lang }: OnlineCreditsPageClien
                           </ul>
                         </div>
 
+                        {/* NBU Links */}
+                        {(loan.essential_characteristics || loan.warning) && (
+                          <div className="flex flex-wrap gap-3 mb-4 pb-4 border-b border-gray-100">
+                            {loan.essential_characteristics && (
+                              <a
+                                href={loan.essential_characteristics}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-sm font-medium text-blue-600 hover:text-blue-800 hover:underline flex items-center gap-1"
+                              >
+                                <Info className="w-4 h-4" />
+                                {dict.allCredits.creditCard.essentialCharacteristics}
+                              </a>
+                            )}
+                            {loan.warning && (
+                              <a
+                                href={loan.warning}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-sm font-medium text-blue-600 hover:text-blue-800 hover:underline flex items-center gap-1"
+                              >
+                                <Info className="w-4 h-4" />
+                                {dict.allCredits.creditCard.warning}
+                              </a>
+                            )}
+                          </div>
+                        )}
+
                         {/* Actions */}
                         <div className="flex gap-3">
                           <a
@@ -677,13 +718,13 @@ export default function OnlineCreditsPageClient({ lang }: OnlineCreditsPageClien
                             rel="noopener noreferrer"
                             className="flex-1 btn-primary text-center"
                           >
-                            Отримати кредит
+                            {t.loan.getCredit}
                           </a>
                           <Link
                             href={`/${lang}/credits/online/${loan.id}`}
                             className="px-6 py-3 border-2 border-primary text-primary rounded-lg font-semibold hover:bg-primary hover:text-white transition-colors text-center"
                           >
-                            {lang === 'uk' ? 'Детальніше' : 'Подробнее'}
+                            {t.loan.details}
                           </Link>
                         </div>
                       </div>
@@ -699,21 +740,18 @@ export default function OnlineCreditsPageClient({ lang }: OnlineCreditsPageClien
         <div className="mt-12 bg-gradient-to-r from-primary via-primary-dark to-primary rounded-2xl p-8 md:p-12 text-white text-center">
           <TrendingUp className="w-12 h-12 mx-auto mb-4" />
           <h2 className="text-2xl md:text-3xl font-bold font-heading mb-4">
-            {lang === 'uk' ? 'Потрібна допомога з вибором?' : 'Нужна помощь с выбором?'}
+            {t.cta.title}
           </h2>
           <p className="text-lg text-blue-100 mb-6 max-w-2xl mx-auto">
-            {lang === 'uk'
-              ? 'Наші фахівці підберуть найвигідніший кредит під ваші потреби та можливості'
-              : 'Наши специалисты подберут самый выгодный кредит под ваши нужды и возможности'
-            }
+            {t.cta.subtitle}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href={`/${lang}/calc/credit`} className="btn-primary bg-white text-primary hover:bg-gray-100">
-              {lang === 'uk' ? 'Кредитний калькулятор' : 'Кредитный калькулятор'}
+              {t.cta.calculator}
             </Link>
-            <button className="btn-secondary bg-transparent border-2 border-white text-white hover:bg-white hover:text-primary">
-              {lang === 'uk' ? 'Безкоштовна консультація' : 'Бесплатная консультация'}
-            </button>
+            {/*<button className="btn-secondary bg-transparent border-2 border-white text-white hover:bg-white hover:text-primary">*/}
+            {/*  {t.cta.consultation}*/}
+            {/*</button>*/}
           </div>
         </div>
 

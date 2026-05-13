@@ -135,7 +135,7 @@ export default function InsurancePage({
       </div>
 
       {/* Hero - Premium Security Design */}
-      <section className="relative py-24 overflow-hidden">
+      <section className="relative py-6 overflow-hidden">
         {/* Decorative angular lines */}
         <div className="absolute inset-0 overflow-hidden opacity-10">
           <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-amber-500 to-transparent"></div>

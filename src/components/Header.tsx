@@ -1,10 +1,10 @@
 'use client';
 
 import Link from 'next/link';
-import Image from 'next/image';
 import { Phone, Menu, ChevronDown, X } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import LanguageSwitcher from './LanguageSwitcher';
+import Logo from './Logo';
 import { type Locale } from '@/i18n/config';
 import { getDictionary } from '@/i18n/dictionaries';
 
@@ -70,15 +70,8 @@ export default function Header({ lang }: HeaderProps) {
       <div className="container-custom">
         {/* Top Bar */}
         <div className="flex items-center justify-between py-1 sm:py-2 border-b border-gray-200">
-          <Link href={`/${lang}`} className="flex items-center">
-            <Image
-              src="/logos/logo-ms.svg"
-              alt="Finradar"
-              width={300}
-              height={80}
-              priority
-              className="h-12 sm:h-16 md:h-20 w-auto"
-            />
+          <Link href={`/${lang}`} className="flex items-center bg-finance-dark px-3 py-2 sm:px-6 sm:py-3 rounded-lg hover:bg-opacity-90 transition-all">
+            <Logo className="text-lg sm:text-2xl md:text-3xl" />
           </Link>
 
           <div className="flex items-center gap-4">
@@ -87,13 +80,13 @@ export default function Header({ lang }: HeaderProps) {
               <LanguageSwitcher mode="path" currentLang={lang} />
             </div>
 
-            <a
-              href="tel:0800307555"
-              className="hidden md:flex items-center gap-2 text-primary hover:text-primary-dark transition-colors"
-            >
-              <Phone className="w-5 h-5" />
-              <span className="font-semibold">0 800 307 555</span>
-            </a>
+            {/*<a*/}
+            {/*  href="tel:0800307555"*/}
+            {/*  className="hidden md:flex items-center gap-2 text-primary hover:text-primary-dark transition-colors"*/}
+            {/*>*/}
+            {/*  <Phone className="w-5 h-5" />*/}
+            {/*  <span className="font-semibold">0 800 307 555</span>*/}
+            {/*</a>*/}
 
             <button
               onClick={() => setIsMobileMenuOpen(true)}
@@ -120,17 +113,11 @@ export default function Header({ lang }: HeaderProps) {
           }`}
         >
           {/* Sidebar Header */}
-          <div className="flex items-center justify-between p-4 border-b border-gray-200">
-            <Image
-              src="/logos/logo-ms.svg"
-              alt="Finradar"
-              width={280}
-              height={112}
-              className="h-12 w-auto"
-            />
+          <div className="flex items-center justify-between p-4 border-b border-gray-200 bg-finance-dark">
+            <Logo className="text-xl" />
             <button
               onClick={closeMobileMenu}
-              className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
+              className="p-2 hover:bg-gray-700 rounded-lg transition-colors text-white"
               aria-label="Close menu"
             >
               <X className="w-6 h-6" />

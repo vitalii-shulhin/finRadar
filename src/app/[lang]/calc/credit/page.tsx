@@ -72,7 +72,7 @@ export default function CreditCalculatorLandingPage({ params }: { params: { lang
       </div>
 
       {/* Hero Section */}
-      <section className="relative py-12">
+      <section className="relative py-2">
         <div className="container-custom">
           <div
             style={{

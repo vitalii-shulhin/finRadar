@@ -246,7 +246,7 @@ export default function CreditCalculator({ loanType }: CreditCalculatorProps) {
       </div>
 
       {/* Hero Section */}
-      <section className="relative py-12">
+      <section className="relative py-2">
         <div className="container-custom">
           <div
             style={{

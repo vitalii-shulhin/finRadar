@@ -206,7 +206,7 @@ export default function OsagoPageContent({ lang }: OsagoPageProps) {
   const [engineVolume, setEngineVolume] = useState(1600);
   const [vehicleAge, setVehicleAge] = useState(5);
   const [benefit, setBenefit] = useState<BenefitType>('none');
-  const [showCalculator, setShowCalculator] = useState(true);
+  const [showCalculator, setShowCalculator] = useState(false);
 
   // Filter state
   const [sortBy, setSortBy] = useState<SortOption>('recommended');
@@ -407,10 +407,10 @@ export default function OsagoPageContent({ lang }: OsagoPageProps) {
               </div>
 
               <div className="flex-1">
-                <h1 className="text-5xl lg:text-6xl font-black text-slate-900 tracking-tight mb-4 leading-tight">
+                <h1 className="sm:text-2xl md:text-3xl lg:text-6xl font-black text-slate-900 tracking-tight mb-4 leading-tight">
                   {dict.osago.hero.title}
                 </h1>
-                <p className="text-xl text-gray-600 font-medium max-w-2xl">
+                <p className="text-sm md:text-sm  text-gray-600 font-medium max-w-2xl">
                   {dict.osago.hero.subtitle}
                 </p>
               </div>
@@ -457,7 +457,7 @@ export default function OsagoPageContent({ lang }: OsagoPageProps) {
       </section>
 
       {/* Calculator Section - Premium Design */}
-      <section className="relative py-12">
+      <section className="relative py-2">
         <div className="container-custom">
           <div
             className="relative"
@@ -651,13 +651,16 @@ export default function OsagoPageContent({ lang }: OsagoPageProps) {
                         </div>
 
                         {/* Quick actions */}
+
                         <div className="flex flex-col sm:flex-row gap-3 mt-8 pt-6 border-t border-white/10">
-                          <button className="flex-1 bg-white text-slate-900 px-6 py-3.5 rounded-xl font-bold hover:bg-white/90 transition-all shadow-xl hover:shadow-2xl hover:scale-105">
-                            {dict.osago.calculator.compareOffers}
-                          </button>
-                          <button className="px-6 py-3.5 bg-white/10 backdrop-blur-sm border-2 border-white/20 text-white rounded-xl font-bold hover:bg-white/20 transition-all">
-                            {dict.osago.calculator.recalculate}
-                          </button>
+                          <Link
+                              href={INSURANCE_COMPANIES[0].insuranceUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="flex-1 bg-white text-slate-900 px-6 py-3.5 rounded-xl font-bold hover:bg-white/90 transition-all shadow-xl hover:shadow-2xl hover:scale-105 text-center"
+                          >
+                            {dict.greenCard.calculator.apply}
+                          </Link>
                         </div>
                       </div>
                     </div>
@@ -670,7 +673,7 @@ export default function OsagoPageContent({ lang }: OsagoPageProps) {
       </section>
 
       {/* Main Content Area */}
-      <section className="relative py-12">
+      <section className="relative py-2">
         <div className="container-custom">
           <div className="flex flex-col lg:flex-row gap-8 lg:gap-12">
             {/* Filters Sidebar - Magazine Editorial Style */}
@@ -930,7 +933,7 @@ export default function OsagoPageContent({ lang }: OsagoPageProps) {
 
                       <div className="p-6 lg:p-8">
                         {/* Product Header */}
-                        <div className="flex items-start justify-between mb-6">
+                        <div className="flex items-start justify-between flex-wrap mb-6">
                           <div className="flex items-start gap-5 flex-1">
                             {/* Logo with enhanced styling */}
                             <div className="relative">

@@ -149,7 +149,7 @@ export default function CreditDetailPage({ credit, lang }: CreditDetailPageProps
                     <span className="text-white font-bold text-sm uppercase tracking-wide">{dict.allCredits.creditCard.rate}</span>
                   </div>
                   <div className="text-2xl font-black text-white drop-shadow-lg">
-                    {credit.minRate}% - {credit.maxRate}%
+                    {credit.minRate}%
                   </div>
                 </div>
 

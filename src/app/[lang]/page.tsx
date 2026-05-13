@@ -9,6 +9,7 @@ import ServicesBlock from "@/components/ServicesBlock";
 import FeaturedBanks from "@/components/FeaturedBanks";
 import { type Locale } from '@/i18n/config';
 import { getDictionary } from '@/i18n/dictionaries';
+import Link from "next/link";
 
 export default function Home({
   params,
@@ -37,9 +38,9 @@ export default function Home({
       {/*</div>*/}
 
       {/* Hero Section - Full Bleed */}
-      <section className="relative">
-        <HeroSection lang={params.lang} />
-      </section>
+      {/*<section className="relative">*/}
+      {/*  <HeroSection lang={params.lang} />*/}
+      {/*</section>*/}
 
       {/* Services Block - Editorial Layout */}
       <section className="relative">
@@ -66,7 +67,7 @@ export default function Home({
       </section>
 
       {/* Main Content - Sophisticated Asymmetric Layout */}
-      <section className="relative py-16">
+      <section className="relative pt-16">
         <div className="container-custom">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
             {/* Primary Content - News (Editorial 7 columns) */}
@@ -99,9 +100,9 @@ export default function Home({
                   <h2 className="text-2xl font-black text-slate-900 tracking-tight">
                     {dict.home.marketData}
                   </h2>
-                  <p className="text-sm text-gray-500 mt-1 font-medium">
-                    {dict.home.marketDataSubtitle}
-                  </p>
+                  {/*<p className="text-sm text-gray-500 mt-1 font-medium">*/}
+                  {/*  {dict.home.marketDataSubtitle}*/}
+                  {/*</p>*/}
                 </div>
               </div>
 
@@ -136,7 +137,7 @@ export default function Home({
       </section>
 
       {/* Featured Banks - Premium Full-Width Section */}
-      <section className="relative py-20 mt-16">
+      <section className="relative mt-16">
         {/* Sophisticated background treatment */}
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-slate-900/[0.02] to-transparent"></div>
 
@@ -146,7 +147,7 @@ export default function Home({
 
         <div className="relative">
           {/* Section Header - Centered Premium Style */}
-          <div className="container-custom mb-16">
+          <div className="container-custom">
             <div className="text-center max-w-3xl mx-auto">
               <div className="inline-flex items-center gap-3 mb-6">
                 <div className="h-px w-16 bg-gradient-to-r from-transparent to-primary"></div>
@@ -169,7 +170,7 @@ export default function Home({
           {/* Featured Banks Component with Enhanced Container */}
           <div className="relative">
             {/* Subtle glow underneath */}
-            <div className="absolute inset-x-0 top-1/2 h-1/2 bg-gradient-to-t from-primary/5 to-transparent blur-2xl"></div>
+            {/*<div className="absolute inset-x-0 top-1/2 h-1/2 bg-gradient-to-t from-primary/5 to-transparent blur-2xl"></div>*/}
 
             <FeaturedBanks lang={params.lang} />
           </div>
@@ -177,12 +178,12 @@ export default function Home({
       </section>
 
       {/* Premium Trust Indicators Bar */}
-      <section className="relative py-12 border-t border-gray-200/50">
+      <section className="relative pt-12 border-t border-gray-200/50">
         <div className="container-custom">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {[
-              { number: '15+', label: dict.home.statistics.yearsOnMarket, icon: '📅' },
-              { number: '500К+', label: dict.home.statistics.satisfiedClients, icon: '👥' },
+              { number: '5+', label: dict.home.statistics.yearsOnMarket, icon: '📅' },
+              { number: '200К+', label: dict.home.statistics.satisfiedClients, icon: '👥' },
               { number: '50+', label: dict.home.statistics.partners, icon: '🤝' },
               { number: '24/7', label: dict.home.statistics.support, icon: '💬' },
             ].map((stat, index) => (
@@ -209,7 +210,7 @@ export default function Home({
       </section>
 
       {/* Premium Footer CTA */}
-      <section className="relative py-20 mt-12">
+      <section className="relative pt-20 pb-10">
         <div className="container-custom">
           <div className="relative rounded-3xl overflow-hidden shadow-2xl">
             {/* Sophisticated gradient background */}
@@ -247,14 +248,14 @@ export default function Home({
                 </p>
 
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <button className="group relative px-8 py-4 bg-white text-slate-900 rounded-xl font-bold text-lg overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105">
+                  <Link href={`/${params.lang}/credits/all`} className="group relative px-8 py-4 bg-white text-slate-900 rounded-xl font-bold text-lg overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105">
                     <span className="relative z-10">{dict.home.cta.startNow}</span>
                     <div className="absolute inset-0 bg-gradient-to-r from-primary to-blue-500 opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
-                  </button>
+                  </Link>
 
-                  <button className="px-8 py-4 bg-white/10 backdrop-blur-sm border-2 border-white/30 text-white rounded-xl font-bold text-lg hover:bg-white/20 transition-all duration-300">
+                  <Link href={`/${params.lang}/credits/all`} className="px-8 py-4 bg-white/10 backdrop-blur-sm border-2 border-white/30 text-white rounded-xl font-bold text-lg hover:bg-white/20 transition-all duration-300">
                     {dict.home.cta.learnMore}
-                  </button>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -263,7 +264,7 @@ export default function Home({
       </section>
 
       {/* Spacer for visual balance */}
-      <div className="h-20"></div>
+      {/*<div className="h-20"></div>*/}
 
       <style jsx>{`
         @keyframes fadeInUp {

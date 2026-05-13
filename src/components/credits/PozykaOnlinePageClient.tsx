@@ -16,7 +16,9 @@ import {
   DollarSign,
   Smartphone,
   FileText,
-  AlertCircle
+  AlertCircle,
+  ChevronDown,
+  Info
 } from 'lucide-react';
 import { LOAN_PRODUCTS, type LoanProduct } from '@/data/loanProducts';
 import { getDictionary } from '@/i18n/dictionaries';
@@ -37,6 +39,7 @@ export default function PozykaOnlinePageClient({ lang }: PozykaOnlinePageClientP
   const [showFilters, setShowFilters] = useState(false);
   const [minRate, setMinRate] = useState(0);
   const [maxRate, setMaxRate] = useState(2);
+  const [showCalculator, setShowCalculator] = useState(false);
 
   // Get unique lenders
   const lenders = Array.from(new Set(LOAN_PRODUCTS.map(loan => loan.lender)));
@@ -150,7 +153,7 @@ export default function PozykaOnlinePageClient({ lang }: PozykaOnlinePageClientP
       </div>
 
       {/* Header */}
-      <div className="bg-gradient-to-r from-purple-600 to-indigo-700 text-white py-12">
+      <div className="bg-gradient-to-r from-purple-600 to-indigo-700 text-white py-2">
         <div className="container-custom">
           <div className="flex items-center gap-4 mb-4">
             <div className="w-16 h-16 bg-white/20 rounded-xl flex items-center justify-center">
@@ -204,77 +207,88 @@ export default function PozykaOnlinePageClient({ lang }: PozykaOnlinePageClientP
         </div>
       </div>
 
-      {/* Loan Calculator Form */}
+      {/* Loan Calculator Form - Accordion */}
       <div className="bg-white border-b shadow-sm">
-        <div className="container-custom py-8">
+        <div className="container-custom py-4">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-2xl font-bold mb-6 flex items-center gap-2">
-              <DollarSign className="w-6 h-6 text-purple-600" />
-              {lang === 'uk' ? 'Розрахуйте свою позику' : 'Рассчитайте свой займ'}
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {/* Loan Amount */}
-              <div>
-                <label className="block text-sm font-semibold mb-3">
-                  Сума кредиту
-                </label>
-                <input
-                  type="range"
-                  min="100"
-                  max="100000"
-                  step="100"
-                  value={loanAmount}
-                  onChange={(e) => setLoanAmount(Number(e.target.value))}
-                  className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-primary"
-                />
-                <div className="flex justify-between items-center mt-2">
-                  <span className="text-sm text-gray-600">100 ₴</span>
-                  <div className="text-2xl font-bold text-primary">
-                    {loanAmount.toLocaleString()} ₴
+            <button
+              onClick={() => setShowCalculator(!showCalculator)}
+              className="w-full flex items-center justify-between p-4 hover:bg-gray-50 rounded-lg transition-colors"
+            >
+              <h2 className="text-2xl font-bold flex items-center gap-2">
+                <DollarSign className="w-6 h-6 text-purple-600" />
+                {lang === 'uk' ? 'Розрахуйте свою позику' : 'Рассчитайте свой займ'}
+              </h2>
+              <ChevronDown className={`w-6 h-6 text-purple-600 transition-transform duration-300 ${showCalculator ? 'rotate-180' : ''}`} />
+            </button>
+
+            {showCalculator && (
+              <div className="mt-4 pt-4 border-t">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {/* Loan Amount */}
+                  <div>
+                    <label className="block text-sm font-semibold mb-3">
+                      Сума кредиту
+                    </label>
+                    <input
+                      type="range"
+                      min="100"
+                      max="100000"
+                      step="100"
+                      value={loanAmount}
+                      onChange={(e) => setLoanAmount(Number(e.target.value))}
+                      className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-primary"
+                    />
+                    <div className="flex justify-between items-center mt-2">
+                      <span className="text-sm text-gray-600">100 ₴</span>
+                      <div className="text-2xl font-bold text-primary">
+                        {loanAmount.toLocaleString()} ₴
+                      </div>
+                      <span className="text-sm text-gray-600">100 000 ₴</span>
+                    </div>
                   </div>
-                  <span className="text-sm text-gray-600">100 000 ₴</span>
+
+                  {/* Loan Term */}
+                  <div>
+                    <label className="block text-sm font-semibold mb-3">
+                      Термін кредиту (днів)
+                    </label>
+                    <input
+                      type="range"
+                      min="1"
+                      max="365"
+                      step="1"
+                      value={loanTerm}
+                      onChange={(e) => setLoanTerm(Number(e.target.value))}
+                      className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-primary"
+                    />
+                    <div className="flex justify-between items-center mt-2">
+                      <span className="text-sm text-gray-600">1 день</span>
+                      <div className="text-2xl font-bold text-primary">
+                        {loanTerm} {loanTerm === 1 ? 'день' : loanTerm < 5 ? 'дні' : 'днів'}
+                      </div>
+                      <span className="text-sm text-gray-600">365 днів</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Results Summary */}
+                <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-4">
+                  <div className="bg-gradient-to-br from-purple-600 to-indigo-700 text-white p-4 rounded-lg">
+                    <div className="text-sm opacity-90 mb-1">{lang === 'uk' ? 'Сума позики' : 'Сумма займа'}</div>
+                    <div className="text-2xl font-bold">{loanAmount.toLocaleString()} ₴</div>
+                  </div>
+                  <div className="bg-gradient-to-br from-green-500 to-green-600 text-white p-4 rounded-lg">
+                    <div className="text-sm opacity-90 mb-1">{lang === 'uk' ? 'Термін' : 'Срок'}</div>
+                    <div className="text-2xl font-bold">{loanTerm} {lang === 'uk' ? 'днів' : 'дней'}</div>
+                  </div>
+                  <div className="bg-gradient-to-br from-orange-500 to-orange-600 text-white p-4 rounded-lg">
+                    <div className="text-sm opacity-90 mb-1">{lang === 'uk' ? 'Знайдено пропозицій' : 'Найдено предложений'}</div>
+                    <div className="text-2xl font-bold">{sortedLoans.length}</div>
+                  </div>
                 </div>
               </div>
-
-              {/* Loan Term */}
-              <div>
-                <label className="block text-sm font-semibold mb-3">
-                  Термін кредиту (днів)
-                </label>
-                <input
-                  type="range"
-                  min="1"
-                  max="365"
-                  step="1"
-                  value={loanTerm}
-                  onChange={(e) => setLoanTerm(Number(e.target.value))}
-                  className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-primary"
-                />
-                <div className="flex justify-between items-center mt-2">
-                  <span className="text-sm text-gray-600">1 день</span>
-                  <div className="text-2xl font-bold text-primary">
-                    {loanTerm} {loanTerm === 1 ? 'день' : loanTerm < 5 ? 'дні' : 'днів'}
-                  </div>
-                  <span className="text-sm text-gray-600">365 днів</span>
-                </div>
-              </div>
-            </div>
-
-            {/* Results Summary */}
-            <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-4">
-              <div className="bg-gradient-to-br from-purple-600 to-indigo-700 text-white p-4 rounded-lg">
-                <div className="text-sm opacity-90 mb-1">{lang === 'uk' ? 'Сума позики' : 'Сумма займа'}</div>
-                <div className="text-2xl font-bold">{loanAmount.toLocaleString()} ₴</div>
-              </div>
-              <div className="bg-gradient-to-br from-green-500 to-green-600 text-white p-4 rounded-lg">
-                <div className="text-sm opacity-90 mb-1">{lang === 'uk' ? 'Термін' : 'Срок'}</div>
-                <div className="text-2xl font-bold">{loanTerm} {lang === 'uk' ? 'днів' : 'дней'}</div>
-              </div>
-              <div className="bg-gradient-to-br from-orange-500 to-orange-600 text-white p-4 rounded-lg">
-                <div className="text-sm opacity-90 mb-1">{lang === 'uk' ? 'Знайдено пропозицій' : 'Найдено предложений'}</div>
-                <div className="text-2xl font-bold">{sortedLoans.length}</div>
-              </div>
-            </div>
+            )}
           </div>
         </div>
       </div>
@@ -532,18 +546,16 @@ export default function PozykaOnlinePageClient({ lang }: PozykaOnlinePageClientP
                     >
                       <div className="p-6">
                         {/* Loan Header */}
-                        <div className="flex items-start justify-between mb-4">
-                          <div className="flex items-start gap-4 flex-1">
-                            <div className={`w-28 h-28 bg-gradient-to-br ${loan.color} rounded-xl flex items-center justify-center shadow-lg flex-shrink-0 relative overflow-hidden`}>
-                              <Image
-                                src={loan.lenderLogo}
-                                alt={loan.lender}
-                                width={112}
-                                height={112}
-                                className="object-contain p-2"
-                              />
-                            </div>
-                            <div className="flex-1">
+                        <div className="flex flex-col sm:flex-row items-start justify-between mb-4 gap-4">
+                          <div className="flex flex-col sm:flex-row items-start gap-6 flex-1 w-full">
+                            <Image
+                              src={loan.lenderLogo}
+                              alt={loan.lender}
+                              width={256}
+                              height={150}
+                              className="object-contain"
+                            />
+                            <div className="flex-1 w-full">
                               <div className="flex items-center gap-2 mb-1 flex-wrap">
                                 <h3 className="text-xl font-semibold">
                                   {loan.lender}
@@ -658,6 +670,26 @@ export default function PozykaOnlinePageClient({ lang }: PozykaOnlinePageClientP
                           </ul>
                         </div>
 
+                        {/* NBU Links */}
+                        {(loan.essential_characteristics || loan.warning) && (
+                          <div className="flex flex-wrap gap-3 mb-4 pb-4 border-b border-gray-100">
+                            {loan.essential_characteristics && (
+                              <a href={loan.essential_characteristics} target="_blank" rel="noopener noreferrer"
+                                 className="text-sm font-medium text-blue-600 hover:text-blue-800 hover:underline flex items-center gap-1">
+                                <Info className="w-4 h-4" />
+                                {dict.allCredits.creditCard.essentialCharacteristics}
+                              </a>
+                            )}
+                            {loan.warning && (
+                              <a href={loan.warning} target="_blank" rel="noopener noreferrer"
+                                 className="text-sm font-medium text-blue-600 hover:text-blue-800 hover:underline flex items-center gap-1">
+                                <Info className="w-4 h-4" />
+                                {dict.allCredits.creditCard.warning}
+                              </a>
+                            )}
+                          </div>
+                        )}
+
                         {/* Actions */}
                         <div className="flex gap-3">
                           <a
@@ -698,11 +730,11 @@ export default function PozykaOnlinePageClient({ lang }: PozykaOnlinePageClientP
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href={`/${lang}/calc/credit`} className="btn-primary bg-white text-purple-600 hover:bg-gray-100">
-              {lang === 'uk' ? 'Кредитний калькулятор' : 'Кредитный калькулятор'}
+              {lang === 'uk' ? 'Всі кредити' : 'Все кридиты'}
             </Link>
-            <button className="btn-secondary bg-transparent border-2 border-white text-white hover:bg-white hover:text-purple-600">
-              {lang === 'uk' ? 'Безкоштовна консультація' : 'Бесплатная консультация'}
-            </button>
+            {/*<button className="btn-secondary bg-transparent border-2 border-white text-white hover:bg-white hover:text-purple-600">*/}
+            {/*  {lang === 'uk' ? 'Безкоштовна консультація' : 'Бесплатная консультация'}*/}
+            {/*</button>*/}
           </div>
         </div>
 

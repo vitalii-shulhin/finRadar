@@ -24,7 +24,7 @@ export async function generateMetadata({
     metadataBase: new URL(baseUrl),
     title: {
       default: dict.meta.home.title,
-      template: "%s | 1FinRadar"
+      template: "%s | FinRadar"
     },
     description: dict.meta.home.description,
     keywords: params.lang === 'uk'
@@ -88,7 +88,7 @@ export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
   maximumScale: 5,
-  themeColor: '#3B82F6',
+  themeColor: '#4ade80',
 };
 
 export default function LangLayout({

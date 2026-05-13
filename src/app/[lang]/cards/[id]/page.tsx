@@ -86,7 +86,7 @@ export default function CardDetailPage() {
       </div>
 
       {/* Hero Section */}
-      <div className={`bg-gradient-to-r ${card.color} text-white py-12`}>
+      <div className={`bg-gradient-to-r ${card.color} text-white py-2`}>
         <div className="container-custom">
           <Link
             href={`/${lang}/cards`}

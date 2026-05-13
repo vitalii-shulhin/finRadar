@@ -1,8 +1,5 @@
 # Insurance (OSAGO) Page Guide
 
-## Overview
-The insurance page provides a comprehensive comparison tool for OSAGO/ОСЦПВ (mandatory car insurance) in Ukraine, similar to finance.ua's insurance section.
-
 ## Pages Created
 
 ### 1. Insurance Hub (`/insurance`)

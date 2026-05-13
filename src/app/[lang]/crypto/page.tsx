@@ -177,7 +177,7 @@ export default function CryptoPage({
       </div>
 
       {/* Hero Section */}
-      <div className="bg-gradient-to-r from-purple-600 to-blue-600 text-white py-12">
+      <div className="bg-gradient-to-r from-purple-600 to-blue-600 text-white py-2">
         <div className="container-custom">
           <h1 className="text-4xl font-bold font-heading mb-4">
             {dict.crypto.onlineRatesTitle}

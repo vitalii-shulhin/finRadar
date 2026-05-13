@@ -1,0 +1,7 @@
+<svg width="300" height="80" viewBox="0 0 300 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Fin (white text) -->
+  <text x="10" y="55" font-family="Raleway, sans-serif" font-size="48" font-weight="700" fill="white">Fin</text>
+
+  <!-- Radar (primary green text) -->
+  <text x="90" y="55" font-family="Raleway, sans-serif" font-size="48" font-weight="700" fill="#4ade80">Radar</text>
+</svg>

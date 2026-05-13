@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { Facebook, Youtube, Send } from 'lucide-react';
+import Logo from './Logo';
 import { type Locale } from '@/i18n/config';
 import { getDictionary } from '@/i18n/dictionaries';
 
@@ -15,30 +16,27 @@ export default function Footer({ lang }: FooterProps) {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* About */}
           <div>
-            <h3 className="text-xl font-bold font-heading mb-4">FinRadar</h3>
+            <Logo className="text-2xl mb-4" />
             <p className="text-gray-300 text-sm mb-4">
               {dict.footer.description}
             </p>
             <div className="flex gap-4">
               <a
-                href="https://t.me/finradar"
-                target="_blank"
+                href="#"
                 rel="noopener noreferrer"
                 className="hover:text-primary transition-colors"
               >
                 <Send className="w-6 h-6" />
               </a>
               <a
-                href="https://facebook.com/finradar"
-                target="_blank"
+                href="#"
                 rel="noopener noreferrer"
                 className="hover:text-primary transition-colors"
               >
                 <Facebook className="w-6 h-6" />
               </a>
               <a
-                href="https://youtube.com/@finradar"
-                target="_blank"
+                href="#"
                 rel="noopener noreferrer"
                 className="hover:text-primary transition-colors"
               >
@@ -62,12 +60,12 @@ export default function Footer({ lang }: FooterProps) {
                 </Link>
               </li>
               <li>
-                <Link href="#loans" className="hover:text-primary transition-colors">
+                <Link href={`${lang}/credits/all`} className="hover:text-primary transition-colors">
                   {dict.footer.nav.credits}
                 </Link>
               </li>
               <li>
-                <Link href="#deposits" className="hover:text-primary transition-colors">
+                <Link href={`${lang}/calc/deposit`} className="hover:text-primary transition-colors">
                   {dict.footer.nav.deposits}
                 </Link>
               </li>
@@ -79,22 +77,22 @@ export default function Footer({ lang }: FooterProps) {
             <h4 className="font-semibold mb-4">{dict.footer.services}</h4>
             <ul className="space-y-2 text-sm text-gray-300">
               <li>
-                <Link href="#cards" className="hover:text-primary transition-colors">
+                <Link href={`${lang}/cards`} className="hover:text-primary transition-colors">
                   {dict.footer.servicesLinks.cards}
                 </Link>
               </li>
               <li>
-                <Link href="#insurance" className="hover:text-primary transition-colors">
+                <Link href={`${lang}/insurance`} className="hover:text-primary transition-colors">
                   {dict.footer.servicesLinks.insurance}
                 </Link>
               </li>
               <li>
-                <Link href="#banks" className="hover:text-primary transition-colors">
+                <Link href={`${lang}/cards`} className="hover:text-primary transition-colors">
                   {dict.footer.servicesLinks.banks}
                 </Link>
               </li>
               <li>
-                <Link href="#crypto" className="hover:text-primary transition-colors">
+                <Link href={`${lang}/crypto`} className="hover:text-primary transition-colors">
                   {dict.footer.servicesLinks.crypto}
                 </Link>
               </li>
@@ -105,9 +103,9 @@ export default function Footer({ lang }: FooterProps) {
           <div>
             <h4 className="font-semibold mb-4">{dict.footer.contact}</h4>
             <ul className="space-y-2 text-sm text-gray-300">
-              <li>{dict.footer.email}: info@finradar.ua</li>
-              <li>{dict.footer.phone}: 0 800 307 555</li>
-              <li>{dict.footer.freeInUkraine}</li>
+              <li>{dict.footer.email}: finradar24@gmail.com</li>
+              {/*<li>{dict.footer.phone}: 0 800 307 555</li>*/}
+              {/*<li>{dict.footer.freeInUkraine}</li>*/}
             </ul>
           </div>
         </div>

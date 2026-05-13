@@ -20,7 +20,8 @@ import {
   Users,
   Award,
   Gift,
-  FileText
+  FileText,
+  Info
 } from 'lucide-react';
 import { MICROCREDIT_PRODUCTS, type MicrocreditProduct } from '@/data/microcreditProducts';
 import { getDictionary } from '@/i18n/dictionaries';
@@ -41,6 +42,7 @@ export default function MicrocreditsPage({ lang }: MicrocreditsPageProps) {
   const [onlyFirstFree, setOnlyFirstFree] = useState(false);
   const [showFilters, setShowFilters] = useState(false);
   const [openFaq, setOpenFaq] = useState<number | null>(null);
+  const [showCalculator, setShowCalculator] = useState(false);
 
   const lenders = Array.from(new Set(MICROCREDIT_PRODUCTS.map(p => p.lender)));
 
@@ -203,17 +205,25 @@ export default function MicrocreditsPage({ lang }: MicrocreditsPageProps) {
         </div>
       </div>
 
-      {/* Calculator Section */}
+      {/* Calculator Section - Accordion */}
       <div className="container-custom mt-12 relative z-20 mb-12">
         <div className="bg-white rounded-3xl shadow-2xl p-8 border border-gray-100">
-          <div className="flex items-center gap-3 mb-6">
-            <div className="w-12 h-12 bg-gradient-to-br from-primary to-blue-600 rounded-xl flex items-center justify-center">
-              <CreditCard className="w-6 h-6 text-white" />
+          <button
+            onClick={() => setShowCalculator(!showCalculator)}
+            className="w-full flex items-center justify-between mb-6 hover:opacity-80 transition-opacity"
+          >
+            <div className="flex items-center gap-3">
+              <div className="w-12 h-12 bg-gradient-to-br from-primary to-blue-600 rounded-xl flex items-center justify-center">
+                <CreditCard className="w-6 h-6 text-white" />
+              </div>
+              <h2 className="text-2xl font-bold">Розрахуйте свій мікрокредит</h2>
             </div>
-            <h2 className="text-2xl font-bold">Розрахуйте свій мікрокредит</h2>
-          </div>
+            <ChevronDown className={`w-6 h-6 text-primary transition-transform duration-300 ${showCalculator ? 'rotate-180' : ''}`} />
+          </button>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+          {showCalculator && (
+            <>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
             {/* Loan Amount */}
             <div>
               <label className="block text-sm font-bold mb-3 text-gray-700">
@@ -282,6 +292,8 @@ export default function MicrocreditsPage({ lang }: MicrocreditsPageProps) {
               <div className="text-3xl font-black">5 хвилин</div>
             </div>
           </div>
+            </>
+          )}
         </div>
       </div>
 
@@ -413,18 +425,17 @@ export default function MicrocreditsPage({ lang }: MicrocreditsPageProps) {
                     }}
                   >
                     <div className="p-6">
-                      <div className="flex items-start justify-between mb-4">
-                        <div className="flex items-start gap-4 flex-1">
-                          <div className={`w-28 h-28 bg-gradient-to-br ${product.color} rounded-2xl flex items-center justify-center shadow-xl transform group-hover:scale-110 transition-transform overflow-hidden relative`}>
-                            <Image
+                      <div className="flex flex-col sm:flex-row items-start justify-between mb-4 gap-4">
+                        <div className="flex flex-col sm:flex-row items-start gap-6 flex-1 w-full">
+                          <Image
                               src={product.logo}
                               alt={product.lender}
-                              fill
-                              className="object-contain p-2"
-                            />
-                          </div>
-                          <div className="flex-1">
-                            <div className="flex items-center gap-2 mb-2 flex-wrap">
+                              width={256}
+                              height={150}
+                              className="object-contain"
+                          />
+                          <div className="flex-1 w-full">
+                      <div className="flex items-center gap-2 mb-2 flex-wrap">
                               <h3 className="text-xl font-black">{product.lender}</h3>
                               {product.recommended && (
                                 <span className="bg-gradient-to-r from-primary to-blue-600 text-white text-xs px-3 py-1 rounded-full font-bold shadow-lg">
@@ -499,6 +510,34 @@ export default function MicrocreditsPage({ lang }: MicrocreditsPageProps) {
                           ))}
                         </ul>
                       </div>
+
+                      {/* NBU Links */}
+                      {(product.essential_characteristics || product.warning) && (
+                        <div className="flex flex-wrap gap-3 mb-4 pb-4 border-b border-gray-100">
+                          {product.essential_characteristics && (
+                            <a
+                              href={product.essential_characteristics}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="text-sm font-medium text-blue-600 hover:text-blue-800 hover:underline flex items-center gap-1"
+                            >
+                              <Info className="w-4 h-4" />
+                              {dict.allCredits.creditCard.essentialCharacteristics}
+                            </a>
+                          )}
+                          {product.warning && (
+                            <a
+                              href={product.warning}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="text-sm font-medium text-blue-600 hover:text-blue-800 hover:underline flex items-center gap-1"
+                            >
+                              <Info className="w-4 h-4" />
+                              {dict.allCredits.creditCard.warning}
+                            </a>
+                          )}
+                        </div>
+                      )}
 
                       <div className="flex gap-3">
                         <a

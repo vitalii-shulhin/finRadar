@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { CreditCard, Filter, Star, TrendingUp, Gift, Percent, Calendar, Shield, Sparkles, Award, Trophy, Medal } from 'lucide-react';
+import { CreditCard, Filter, Star, TrendingUp, Gift, Percent, Calendar, Shield, Sparkles, Award, Trophy, Medal, ChevronDown, ChevronUp, Info } from 'lucide-react';
 import { type Locale } from '@/i18n/config';
 import { getDictionary } from '@/i18n/dictionaries';
 import { CREDIT_CARDS_RATING as CARDS_DATA } from '@/data/cards';
@@ -48,6 +48,7 @@ export default function CreditCardsRatingPage({
   const [sortBy, setSortBy] = useState<SortOption>('rating');
   const [selectedBanks, setSelectedBanks] = useState<string[]>([]);
   const [showFilters, setShowFilters] = useState(true);
+  const [showFilterPanel, setShowFilterPanel] = useState(false);
 
   const banks = Array.from(new Set(CARDS_DATA.map(card => card.bank)));
 
@@ -170,29 +171,42 @@ export default function CreditCardsRatingPage({
         <div className="container-custom">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
             {/* Sidebar - Refined Filters (3 columns) */}
-            <aside className={`lg:col-span-3 space-y-6 ${showFilters ? '' : 'hidden lg:block'}`}>
+            <aside className={`lg:col-span-4 space-y-6 ${showFilters ? '' : 'hidden lg:block'}`}>
               {/* Filter Panel */}
               <div className="sticky top-8">
                 <div className="bg-white/90 backdrop-blur-xl rounded-2xl shadow-xl border border-gray-100 overflow-hidden">
-                  {/* Header with accent */}
-                  <div className="bg-gradient-to-r from-slate-900 to-slate-800 p-6">
+                  {/* Header with accent - Now Accordion Toggle */}
+                  <button
+                    onClick={() => setShowFilterPanel(!showFilterPanel)}
+                    className="w-full bg-gradient-to-r from-slate-900 to-slate-800 p-6"
+                  >
                     <div className="flex items-center justify-between">
                       <h2 className="text-lg font-black text-white flex items-center gap-2 uppercase tracking-wide">
                         <Filter className="w-4 h-4" />
                         {dict.cards.filters}
                       </h2>
-                      <button
-                        onClick={() => {
-                          setSelectedBanks([]);
-                        }}
-                        className="text-xs text-white/70 hover:text-white font-bold uppercase tracking-wider"
-                      >
-                        {dict.cards.clearFilters}
-                      </button>
+                      <div className="flex items-center gap-3">
+                        <div
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            setSelectedBanks([]);
+                          }}
+                          className="text-xs text-white/70 hover:text-white font-bold uppercase tracking-wider cursor-pointer"
+                        >
+                          {dict.cards.clearFilters}
+                        </div>
+                        {showFilterPanel ? (
+                          <ChevronUp className="w-5 h-5 text-white" />
+                        ) : (
+                          <ChevronDown className="w-5 h-5 text-white/70" />
+                        )}
+                      </div>
                     </div>
-                  </div>
+                  </button>
 
-                  <div className="p-6 space-y-6">
+                  {/* Accordion Content */}
+                  {showFilterPanel && (
+                    <div className="p-6 space-y-6">
                     {/* Bank Filter - Refined Checkboxes */}
                     <div>
                       <h3 className="font-black text-slate-900 mb-4 uppercase tracking-wide text-sm">{dict.cards.filterByBank}</h3>
@@ -219,30 +233,33 @@ export default function CreditCardsRatingPage({
                       </div>
                     </div>
                   </div>
+                  )}
                 </div>
 
                 {/* Info Card - Premium Design */}
-                <div className="mt-6 bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl p-6 border-2 border-blue-100/50 shadow-lg">
-                  <h3 className="font-black mb-4 flex items-center gap-2 text-slate-900 uppercase tracking-wide text-sm">
-                    <Shield className="w-5 h-5 text-blue-600" />
-                    {dict.cards.security}
-                  </h3>
-                  <div className="text-sm text-slate-700 space-y-2 font-medium">
-                    <p className="flex items-start gap-2">
-                      <span className="text-blue-600 mt-0.5">✓</span>
-                      <span>{dict.cards.security3D}</span>
-                    </p>
-                    <p className="flex items-start gap-2">
-                      <span className="text-blue-600 mt-0.5">✓</span>
-                      <span>{dict.cards.depositGuarantee}</span>
-                    </p>
+                {showFilterPanel && (
+                  <div className="mt-6 bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl p-6 border-2 border-blue-100/50 shadow-lg">
+                    <h3 className="font-black mb-4 flex items-center gap-2 text-slate-900 uppercase tracking-wide text-sm">
+                      <Shield className="w-5 h-5 text-blue-600" />
+                      {dict.cards.security}
+                    </h3>
+                    <div className="text-sm text-slate-700 space-y-2 font-medium">
+                      <p className="flex items-start gap-2">
+                        <span className="text-blue-600 mt-0.5">✓</span>
+                        <span>{dict.cards.security3D}</span>
+                      </p>
+                      <p className="flex items-start gap-2">
+                        <span className="text-blue-600 mt-0.5">✓</span>
+                        <span>{dict.cards.depositGuarantee}</span>
+                      </p>
+                    </div>
                   </div>
-                </div>
+                )}
               </div>
             </aside>
 
             {/* Main Content Area (9 columns) */}
-            <div className="lg:col-span-9">
+            <div className="lg:col-span-8">
               {/* Sort Bar - Editorial Style */}
               <div className="bg-white/90 backdrop-blur-xl rounded-2xl shadow-xl border border-gray-100 p-5 mb-8">
                 <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
@@ -396,6 +413,34 @@ export default function CreditCardsRatingPage({
                                 {dict.creditCards.interestRate}: <span className="font-black text-slate-900">{card.interestRate}</span>
                               </span>
                             </div>
+                          </div>
+                        )}
+
+                        {/* NBU Links */}
+                        {(card.essential_characteristics || card.warning) && (
+                          <div className="flex flex-wrap gap-3 mb-4 pb-4 border-b border-gray-100">
+                            {card.essential_characteristics && (
+                              <a
+                                href={card.essential_characteristics}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-sm font-medium text-blue-600 hover:text-blue-800 hover:underline flex items-center gap-1"
+                              >
+                                <Info className="w-4 h-4" />
+                                {dict.allCredits.creditCard.essentialCharacteristics}
+                              </a>
+                            )}
+                            {card.warning && (
+                              <a
+                                href={card.warning}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-sm font-medium text-blue-600 hover:text-blue-800 hover:underline flex items-center gap-1"
+                              >
+                                <Info className="w-4 h-4" />
+                                {dict.allCredits.creditCard.warning}
+                              </a>
+                            )}
                           </div>
                         )}
 

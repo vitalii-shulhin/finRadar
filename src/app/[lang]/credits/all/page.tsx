@@ -18,11 +18,11 @@ import {
   Percent,
   Calendar,
   Wallet,
-  ArrowUpDown,
 } from 'lucide-react';
 import { getDictionary } from '@/i18n/dictionaries';
 import type { Locale } from '@/i18n/config';
 import { CREDIT_OFFERS as CREDIT_OFFERS_BASE } from '@/data/creditOffers';
+import {log} from "node:util";
 
 interface CreditOffer {
   id: number;
@@ -35,7 +35,6 @@ interface CreditOffer {
   minAmount: number;
   maxAmount: number;
   minRate: number;
-  maxRate: number;
   minTerm: number;
   maxTerm: number;
   approvalTime: string;
@@ -45,6 +44,8 @@ interface CreditOffer {
   instantDecision: boolean;
   color: string;
   creditUrl?: string;
+  essential_characteristics?: string;
+  warning?: string;
 }
 
 
@@ -63,7 +64,7 @@ export default function AllCreditsPage({
     const bankKey = credit.bank.toLowerCase().replace(/\s/g, '').replace('банк', 'bank');
     const typeKey = credit.type === 'credit-line' ? 'creditLine' : credit.type;
     const offers = dict.allCredits.offers as any;
-
+    console.log(bankKey)
     return {
       ...credit,
       typeName: dict.allCredits.typeNames[typeKey],
@@ -208,8 +209,8 @@ export default function AllCreditsPage({
     name: 'FinRadar',
     url: baseUrl,
     description: params.lang === 'uk'
-      ? '25 років на ринку. 1.2 млн кредитів оформлено. 3 млрд грн видано в кредит.'
-      : '25 лет на рынке. 1.2 млн кредитов оформлено. 3 млрд грн выдано в кредит.',
+      ? '5 років на ринку. 1.2 млн кредитів оформлено. 3 млрд грн видано в кредит.'
+      : '5 лет на рынке. 1.2 млн кредитов оформлено. 3 млрд грн выдано в кредит.',
   };
 
   return (
@@ -262,7 +263,7 @@ export default function AllCreditsPage({
       </div>
 
       {/* Hero Section */}
-      <section className="relative py-12">
+      <section className="relative py-2">
         <div className="container-custom">
           <div
             style={{
@@ -506,15 +507,14 @@ export default function AllCreditsPage({
                           <div className="flex flex-col lg:flex-row gap-6">
                             {/* Bank Info */}
                             <div className="flex-1">
-                              <div className="flex items-start gap-4 mb-4">
-                                <div className={`w-28 h-28 bg-gradient-to-br ${credit.color} rounded-2xl flex items-center justify-center shadow-xl transform group-hover:scale-110 transition-transform overflow-hidden relative`}>
-                                  <Image
-                                    src={credit.logo}
-                                    alt={credit.bank}
-                                    fill
-                                    className="object-contain p-2"
-                                  />
-                                </div>
+                              <div className="flex flex-col sm:flex-row items-start gap-6 mb-6">
+                                <Image
+                                  src={credit.logo}
+                                  alt={credit.bank}
+                                  width={256}
+                                  height={150}
+                                  className="object-contain"
+                                />
                                 <div className="flex-1">
                                   <div className="flex items-center gap-3 mb-2">
                                     <h3 className="text-2xl font-black text-slate-900">
@@ -558,7 +558,7 @@ export default function AllCreditsPage({
                                     <span className="text-xs font-bold text-gray-600 uppercase">{dict.allCredits.creditCard.rate}</span>
                                   </div>
                                   <div className="text-lg font-black text-slate-900">
-                                    {credit.minRate}% - {credit.maxRate}%
+                                    {credit.minRate}%
                                   </div>
                                 </div>
 
@@ -568,7 +568,7 @@ export default function AllCreditsPage({
                                     <span className="text-xs font-bold text-gray-600 uppercase">{dict.allCredits.creditCard.term}</span>
                                   </div>
                                   <div className="text-lg font-black text-slate-900">
-                                    {credit.minTerm < 12 ? `${credit.minTerm} ${dict.allCredits.creditCard.days}` : `${credit.minTerm} ${dict.allCredits.creditCard.months}`} - {credit.maxTerm < 12 ? `${credit.maxTerm} ${dict.allCredits.creditCard.days}` : `${credit.maxTerm} ${dict.allCredits.creditCard.months}`}
+                                    {`${credit.minTerm} ${dict.allCredits.creditCard.days}`} - {credit.maxTerm > 12 ? `${credit.maxTerm} ${dict.allCredits.creditCard.days}` : `${credit.maxTerm} ${dict.allCredits.creditCard.months}`}
                                   </div>
                                 </div>
 
@@ -632,6 +632,34 @@ export default function AllCreditsPage({
                                   </span>
                                 )}
                               </div>
+
+                              {/* NBU Links */}
+                              {(credit.essential_characteristics || credit.warning) && (
+                                <div className="flex flex-wrap gap-3 pt-4 border-t border-gray-100">
+                                  {credit.essential_characteristics && (
+                                    <a
+                                      href={credit.essential_characteristics}
+                                      target="_blank"
+                                      rel="noopener noreferrer"
+                                      className="text-sm font-medium text-blue-600 hover:text-blue-800 hover:underline flex items-center gap-1"
+                                    >
+                                      <Info className="w-4 h-4" />
+                                      {dict.allCredits.creditCard.essentialCharacteristics}
+                                    </a>
+                                  )}
+                                  {credit.warning && (
+                                    <a
+                                      href={credit.warning}
+                                      target="_blank"
+                                      rel="noopener noreferrer"
+                                      className="text-sm font-medium text-blue-600 hover:text-blue-800 hover:underline flex items-center gap-1"
+                                    >
+                                      <Info className="w-4 h-4" />
+                                      {dict.allCredits.creditCard.warning}
+                                    </a>
+                                  )}
+                                </div>
+                              )}
                             </div>
 
                             {/* Action Buttons */}

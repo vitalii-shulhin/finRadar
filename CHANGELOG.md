@@ -889,8 +889,6 @@ All notable changes to the FinRadar project.
 
 ## [1.1.0] - 2026-03-13
 
-### ✨ Added - Services Block Section (like finance.ua)
-
 #### 📦 New Components
 
 **1. ServicesBlock.tsx**
@@ -944,7 +942,6 @@ All notable changes to the FinRadar project.
 - Consistent card-based design system
 - Gradient backgrounds for premium feel
 - Smooth hover animations and transitions
-- Color-coded elements matching finance.ua style
 - Responsive grid layouts (1/2/3/4 columns)
 - Interactive elements with visual feedback
 

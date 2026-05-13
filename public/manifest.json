@@ -1,11 +1,11 @@
 {
-  "name": "Finradar - Фінансовий портал України",
-  "short_name": "Finradar",
+  "name": "FinRadar - Фінансовий портал України",
+  "short_name": "FinRadar",
   "description": "Ваш радар у світі фінансів - новини, курси валют, кредити, страхування",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",
-  "theme_color": "#3B82F6",
+  "theme_color": "#4ade80",
   "orientation": "portrait-primary",
   "icons": [
     {

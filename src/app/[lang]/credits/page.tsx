@@ -325,9 +325,9 @@ export default function CreditsPage({
             {dict.credits.consultationText}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="btn-primary bg-white text-primary hover:bg-gray-100">
-              {dict.credits.freeConsultation}
-            </button>
+            {/*<button className="btn-primary bg-white text-primary hover:bg-gray-100">*/}
+            {/*  {dict.credits.freeConsultation}*/}
+            {/*</button>*/}
             <Link href={`/${params.lang}/credits/online`} className="btn-secondary bg-transparent border-2 border-white text-white hover:bg-white hover:text-primary inline-block text-center">
               {dict.credits.findCredit}
             </Link>

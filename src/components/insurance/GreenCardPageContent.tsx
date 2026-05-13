@@ -243,10 +243,10 @@ export default function GreenCardPageContent({ lang }: { lang: Locale }) {
 
           {/* Title */}
           <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-4xl lg:text-6xl font-black text-white mb-6 leading-tight">
+            <h1 className="sm:text-2xl md:text-3xl lg:text-6xl font-black text-white mb-6 leading-tight">
               {dict.greenCard.hero.title}
             </h1>
-            <p className="text-xl text-green-100 font-medium mb-8 leading-relaxed">
+            <p className="text-sm md:text-sm  text-green-100 font-medium mb-8 leading-relaxed">
               {dict.greenCard.hero.subtitle}
             </p>
 
