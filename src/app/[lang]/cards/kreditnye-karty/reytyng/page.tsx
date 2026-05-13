@@ -134,12 +134,12 @@ export default function CreditCardsRatingPage({
             </div>
 
             {/* Main Heading - Bold Typography */}
-            <h1 className="text-5xl lg:text-6xl font-black tracking-tight mb-6 leading-tight">
+            <h1 className="sm:text-2xl md:text-3xl lg:text-6xl font-black tracking-tight mb-6 leading-tight">
               {dict.creditCardsRating.h1}
             </h1>
 
             {/* Subheading */}
-            <p className="text-xl text-gray-600 font-medium max-w-2xl leading-relaxed mb-8">
+            <p className="text-sm md:text-sm  text-gray-600 font-medium max-w-2xl leading-relaxed mb-8">
               {dict.creditCardsRating.subtitle}
             </p>
 

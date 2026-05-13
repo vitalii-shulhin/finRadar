@@ -248,12 +248,12 @@ export default function DepositCalculatorPage({ params }: { params: { lang: Loca
               </div>
 
               <div className="flex-1">
-                <h1 className="text-5xl lg:text-6xl font-black text-slate-900 tracking-tight mb-4 leading-tight">
+                <h1 className="sm:text-2xl md:text-3xl lg:text-6xl font-black text-slate-900 tracking-tight mb-4 leading-tight">
                   <span className="bg-gradient-to-r from-green-500 to-emerald-600 bg-clip-text text-transparent">
                     {dict.calculators.depositCalculator.hero.title}
                   </span>
                 </h1>
-                <p className="text-xl text-gray-600 font-medium max-w-2xl">
+                <p className="text-sm md:text-sm  text-gray-600 font-medium max-w-2xl">
                   {dict.calculators.depositCalculator.hero.description}
                 </p>
               </div>

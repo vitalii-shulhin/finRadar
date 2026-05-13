@@ -316,7 +316,7 @@ export default function KaskoPageContent({ lang }: { lang: Locale }) {
             <h1 className="text-4xl lg:text-6xl font-black text-white mb-6 leading-tight">
               {dict.kasko.hero.title}
             </h1>
-            <p className="text-xl text-blue-100 font-medium mb-8 leading-relaxed">
+            <p className="text-sm md:text-sm  text-blue-100 font-medium mb-8 leading-relaxed">
               {dict.kasko.hero.subtitle}
             </p>
 

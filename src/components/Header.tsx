@@ -248,8 +248,7 @@ export default function Header({ lang }: HeaderProps) {
                 className="flex items-center gap-2 px-4 py-3 text-primary hover:bg-gray-100 font-semibold rounded-lg transition-colors"
                 onClick={closeMobileMenu}
               >
-                <Phone className="w-5 h-5" />
-                <span>0 800 307 555</span>
+                <span>finradar24@gmail.com</span>
               </a>
             </div>
           </nav>

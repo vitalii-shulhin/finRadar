@@ -96,12 +96,12 @@ export default function CreditCalculatorLandingPage({ params }: { params: { lang
               </div>
 
               <div className="flex-1">
-                <h1 className="text-5xl lg:text-6xl font-black text-slate-900 tracking-tight mb-4 leading-tight">
+                <h1 className="sm:text-2xl md:text-3xl lg:text-6xl font-black text-slate-900 tracking-tight mb-4 leading-tight">
                   <span className="bg-gradient-to-r from-indigo-500 to-purple-600 bg-clip-text text-transparent">
                     {dict.calculators.creditCalculator.hero.title}
                   </span>
                 </h1>
-                <p className="text-xl text-gray-600 font-medium max-w-2xl">
+                <p className="text-sm md:text-sm  text-gray-600 font-medium max-w-2xl">
                   {dict.calculators.creditCalculator.hero.description}
                 </p>
               </div>

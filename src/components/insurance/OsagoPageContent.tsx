@@ -632,7 +632,7 @@ export default function OsagoPageContent({ lang }: OsagoPageProps) {
                             <div className="text-sm font-semibold text-white/70 uppercase tracking-wide mb-2">
                               {dict.osago.calculator.estimatedPrice}
                             </div>
-                            <div className="text-5xl lg:text-6xl font-black text-white mb-3 tracking-tight">
+                            <div className="sm:text-2xl md:text-3xl lg:text-6xl font-black text-white mb-3 tracking-tight">
                               {estimatedPrice.toLocaleString()} ₴
                             </div>
                             <div className="flex items-start gap-2 text-sm text-white/60 font-medium max-w-md">

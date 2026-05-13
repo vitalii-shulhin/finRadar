@@ -270,14 +270,14 @@ export default function CreditCalculator({ loanType }: CreditCalculatorProps) {
               </div>
 
               <div className="flex-1">
-                <h1 className="text-5xl lg:text-6xl font-black text-slate-900 tracking-tight mb-4 leading-tight">
+                <h1 className="sm:text-2xl md:text-3xl lg:text-6xl font-black text-slate-900 tracking-tight mb-4 leading-tight">
                   {LOAN_LABELS[loanType]}
                   <br />
                   <span className="bg-gradient-to-r from-indigo-500 to-purple-600 bg-clip-text text-transparent">
                     кредит
                   </span>
                 </h1>
-                <p className="text-xl text-gray-600 font-medium max-w-2xl">
+                <p className="text-sm md:text-sm  text-gray-600 font-medium max-w-2xl">
                   {LOAN_DESCRIPTIONS[loanType]}
                 </p>
               </div>

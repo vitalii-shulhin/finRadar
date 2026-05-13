@@ -205,7 +205,7 @@ export default function CardsPage({
                         {dict.cards.filters}
                       </h2>
                       <div className="flex items-center gap-3">
-                        <button
+                        <div
                           onClick={(e) => {
                             e.stopPropagation();
                             setSelectedBanks([]);
@@ -214,7 +214,7 @@ export default function CardsPage({
                           className="text-xs text-white/70 hover:text-white font-bold uppercase tracking-wider"
                         >
                           {dict.cards.clearFilters}
-                        </button>
+                        </div>
                         {showFilterPanel ? (
                           <ChevronUp className="w-5 h-5 text-white" />
                         ) : (
