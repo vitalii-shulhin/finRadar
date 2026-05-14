@@ -613,7 +613,7 @@ export default function OnlineCreditsPageClient({ lang }: OnlineCreditsPageClien
                               {t.loan.term}
                             </div>
                             <div className="font-semibold text-green-600 text-sm">
-                              {loan.minTerm} - {loan.maxTerm} {t.calculator.daysMany}
+                              до {loan.maxTerm} {t.calculator.daysMany}
                             </div>
                           </div>
                           <div className="bg-orange-50 p-3 rounded-lg">
@@ -637,18 +637,18 @@ export default function OnlineCreditsPageClient({ lang }: OnlineCreditsPageClien
                         </div>
 
                         {/* Calculation Result */}
-                        <div className="bg-gradient-to-r from-primary to-primary-dark text-white p-4 rounded-lg mb-4">
-                          <div className="flex items-center justify-between">
-                            <div>
-                              <div className="text-sm opacity-90 mb-1">{t.loan.monthlyPayment}</div>
-                              <div className="text-3xl font-bold">{monthlyPayment.toLocaleString()} ₴</div>
-                            </div>
-                            <Smartphone className="w-12 h-12 opacity-20" />
-                          </div>
-                          <div className="text-xs opacity-75 mt-2">
-                            {t.loan.disclaimer}
-                          </div>
-                        </div>
+                        {/*<div className="bg-gradient-to-r from-primary to-primary-dark text-white p-4 rounded-lg mb-4">*/}
+                        {/*  <div className="flex items-center justify-between">*/}
+                        {/*    <div>*/}
+                        {/*      <div className="text-sm opacity-90 mb-1">{t.loan.monthlyPayment}</div>*/}
+                        {/*      <div className="text-3xl font-bold">{monthlyPayment.toLocaleString()} ₴</div>*/}
+                        {/*    </div>*/}
+                        {/*    <Smartphone className="w-12 h-12 opacity-20" />*/}
+                        {/*  </div>*/}
+                        {/*  <div className="text-xs opacity-75 mt-2">*/}
+                        {/*    {t.loan.disclaimer}*/}
+                        {/*  </div>*/}
+                        {/*</div>*/}
 
                         {/* Features */}
                         <div className="mb-4">

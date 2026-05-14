@@ -48,19 +48,19 @@ export default function GroshiTerminovoPageClient({ lang }: GroshiTerminovoPageC
   const filteredLoans = useMemo(() => {
     let results = LOAN_PRODUCTS;
 
-    // Filter by loan amount
-    results = results.filter(loan => loanAmount >= loan.minAmount && loanAmount <= loan.maxAmount);
-
-    // Filter by loan term
-    results = results.filter(loan => loanTerm >= loan.minTerm && loanTerm <= loan.maxTerm);
-
-    // Filter by selected lenders
-    if (selectedLenders.length > 0) {
-      results = results.filter(loan => selectedLenders.includes(loan.lender));
-    }
-
-    // Filter by interest rate
-    results = results.filter(loan => loan.interestRateValue >= minRate && loan.interestRateValue <= maxRate);
+    // // Filter by loan amount
+    // results = results.filter(loan => loanAmount >= loan.minAmount && loanAmount <= loan.maxAmount);
+    //
+    // // Filter by loan term
+    // results = results.filter(loan => loanTerm >= loan.minTerm && loanTerm <= loan.maxTerm);
+    //
+    // // Filter by selected lenders
+    // if (selectedLenders.length > 0) {
+    //   results = results.filter(loan => selectedLenders.includes(loan.lender));
+    // }
+    //
+    // // Filter by interest rate
+    // results = results.filter(loan => loan.interestRateValue >= minRate && loan.interestRateValue <= maxRate);
 
     return results;
   }, [loanAmount, loanTerm, selectedLenders, minRate, maxRate]);
@@ -70,12 +70,12 @@ export default function GroshiTerminovoPageClient({ lang }: GroshiTerminovoPageC
     const counts: Record<string, number> = {};
     lenders.forEach(lender => {
       const count = LOAN_PRODUCTS.filter(loan =>
-        loanAmount >= loan.minAmount &&
-        loanAmount <= loan.maxAmount &&
-        loanTerm >= loan.minTerm &&
-        loanTerm <= loan.maxTerm &&
-        loan.interestRateValue >= minRate &&
-        loan.interestRateValue <= maxRate &&
+        // loanAmount >= loan.minAmount &&
+        // loanAmount <= loan.maxAmount &&
+        // loanTerm >= loan.minTerm &&
+        // loanTerm <= loan.maxTerm &&
+        // loan.interestRateValue >= minRate &&
+        // loan.interestRateValue <= maxRate &&
         loan.lender === lender
       ).length;
       counts[lender] = count;
@@ -595,7 +595,7 @@ export default function GroshiTerminovoPageClient({ lang }: GroshiTerminovoPageC
                               Термін
                             </div>
                             <div className="font-semibold text-green-600 text-sm">
-                              {loan.minTerm} - {loan.maxTerm} днів
+                              до {loan.maxTerm} днів
                             </div>
                           </div>
                           <div className="bg-orange-50 p-3 rounded-lg">

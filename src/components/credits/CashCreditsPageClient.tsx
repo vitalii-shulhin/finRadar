@@ -49,13 +49,13 @@ export default function CashCreditsPageClient({ lang }: CashCreditsPageClientPro
   const filteredProducts = useMemo(() => {
     let results = CASH_CREDIT_PRODUCTS;
 
-    results = results.filter(p => loanAmount >= p.minAmount && loanAmount <= p.maxAmount);
-    results = results.filter(p => loanTerm >= p.minTerm && loanTerm <= p.maxTerm);
-    results = results.filter(p => p.maxAmount >= minAmount);
-
-    if (selectedLenders.length > 0) {
-      results = results.filter(p => selectedLenders.includes(p.lender));
-    }
+    // results = results.filter(p => loanAmount >= p.minAmount && loanAmount <= p.maxAmount);
+    // results = results.filter(p => loanTerm >= p.minTerm && loanTerm <= p.maxTerm);
+    // results = results.filter(p => p.maxAmount >= minAmount);
+    //
+    // if (selectedLenders.length > 0) {
+    //   results = results.filter(p => selectedLenders.includes(p.lender));
+    // }
 
     return results;
   }, [loanAmount, loanTerm, selectedLenders, minAmount]);
@@ -557,7 +557,7 @@ export default function CashCreditsPageClient({ lang }: CashCreditsPageClientPro
                         <div className="bg-gradient-to-br from-blue-50 to-indigo-50 p-4 rounded-2xl border border-blue-200">
                           <div className="text-xs text-gray-600 mb-1 font-semibold uppercase">{t.product.term}</div>
                           <div className="font-black text-blue-900">
-                            {product.minTerm}-{product.maxTerm} {product.maxTerm === 1 ? t.calculator.day : product.maxTerm < 5 ? t.calculator.days : t.calculator.daysMany}
+                            до {product.maxTerm} {product.maxTerm === 1 ? t.calculator.day : product.maxTerm < 5 ? t.calculator.days : t.calculator.daysMany}
                           </div>
                         </div>
                         <div className="bg-gradient-to-br from-amber-50 to-yellow-50 p-4 rounded-2xl border border-amber-200">

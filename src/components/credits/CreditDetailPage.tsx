@@ -79,60 +79,65 @@ export default function CreditDetailPage({ credit, lang }: CreditDetailPageProps
       <section className="container-custom pb-8">
         <div className="relative">
           <div className="absolute inset-0 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-3xl blur-3xl opacity-30"></div>
-
-          <div className={`relative bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-600 rounded-3xl p-8 sm:p-12 overflow-hidden shadow-2xl`}>
+          <div className="relative bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-600 rounded-3xl p-4 md:p-12 overflow-hidden shadow-2xl">
             <div className="absolute inset-0 bg-gradient-to-br from-black/20 to-black/10"></div>
             <div className="absolute inset-0 bg-gradient-to-tl from-white/5 to-transparent"></div>
-
             <div className="relative z-10">
-              <div className="flex items-start justify-between mb-6 flex-wrap gap-4">
-                <div className="flex items-center gap-6">
-                  <div className="w-32 h-32 bg-white rounded-3xl flex items-center justify-center shadow-2xl overflow-hidden relative">
+              <div className="flex flex-col md:flex-row items-center md:items-start justify-between mb-4 md:mb-6 gap-4 md:gap-0">
+                {/* Logo & Name */}
+                <div className="flex flex-col md:flex-row items-center md:items-start gap-3 md:gap-6 flex-1">
+                  {/* Always BIG logo */}
+                  <div className="
+              w-40 h-40 min-w-40 min-h-40
+              bg-white rounded-3xl flex items-center justify-center shadow-2xl overflow-hidden relative
+              mx-auto md:mx-0
+              mb-3 md:mb-0
+            ">
                     <Image
-                      src={credit.logo}
-                      alt={`${credit.bank} logo`}
-                      width={128}
-                      height={128}
-                      className="object-contain p-3"
+                        src={credit.logo}
+                        alt={`${credit.bank} logo`}
+                        width={200}
+                        height={200}
+                        className="object-contain p-2 md:p-3"
+                        priority
                     />
                   </div>
-                  <div>
-                    <div className="text-white/90 text-base font-bold mb-2 uppercase tracking-wide">{typeName}</div>
-                    <h1 className="text-5xl font-black text-white mb-3 drop-shadow-lg">{credit.bank}</h1>
-                    <div className="flex items-center gap-4">
+                  {/* Name/Info */}
+                  <div className="text-center md:text-left">
+                    <div className="text-white/90 text-sm font-bold mb-2 uppercase tracking-wide">{typeName}</div>
+                    <h1 className="text-3xl md:text-5xl font-black text-white mb-2 md:mb-3 drop-shadow-lg">{credit.bank}</h1>
+                    <div className="flex flex-col md:flex-row items-center md:items-start justify-center md:justify-start gap-2 md:gap-4">
                       <div className="flex items-center gap-2 bg-yellow-400 px-4 py-2 rounded-full shadow-lg border-2 border-yellow-300">
-                        <Star className="w-5 h-5 text-orange-600 fill-orange-600 drop-shadow" />
+                        <Star className="w-5 h-5 text-orange-600 fill-orange-600" />
                         <span className="text-gray-900 font-black text-lg">{credit.rating}</span>
                       </div>
                       <span className="text-white font-bold text-base drop-shadow-md">
-                        {credit.reviews.toLocaleString()} {lang === 'uk' ? 'відгуків' : 'отзывов'}
-                      </span>
+                  {credit.reviews.toLocaleString()}{lang === 'uk' ? 'відгуків' : 'отзывов'}
+                </span>
                     </div>
                   </div>
                 </div>
-
-                {/* Badges */}
-                <div className="flex flex-wrap gap-3 justify-end">
+                {/* Badges - below name on mobile, right on desktop */}
+                <div className="flex flex-row md:flex-col flex-wrap justify-center md:justify-end gap-2 md:gap-3 mt-2 md:mt-0">
                   {credit.onlineApplication && (
-                    <span className="bg-cyan-400 border-2 border-cyan-300 text-gray-900 text-sm font-black px-4 py-2 rounded-full shadow-lg">
-                      {dict.allCredits.creditCard.badges.onlineApplication}
-                    </span>
+                      <span className="bg-cyan-400 border-2 border-cyan-300 text-gray-900 text-sm font-black px-4 py-2 rounded-full shadow-lg">
+                {dict.allCredits.creditCard.badges.onlineApplication}
+              </span>
                   )}
                   {credit.instantDecision && (
-                    <span className="bg-green-400 border-2 border-green-300 text-gray-900 text-sm font-black px-4 py-2 rounded-full shadow-lg">
-                      {dict.allCredits.creditCard.badges.instantDecision}
-                    </span>
+                      <span className="bg-green-400 border-2 border-green-300 text-gray-900 text-sm font-black px-4 py-2 rounded-full shadow-lg">
+                {dict.allCredits.creditCard.badges.instantDecision}
+              </span>
                   )}
                   {!credit.requiresCollateral && (
-                    <span className="bg-yellow-400 border-2 border-yellow-300 text-gray-900 text-sm font-black px-4 py-2 rounded-full shadow-lg">
-                      {dict.allCredits.creditCard.badges.noCollateral}
-                    </span>
+                      <span className="bg-yellow-400 border-2 border-yellow-300 text-gray-900 text-sm font-black px-4 py-2 rounded-full shadow-lg">
+                {dict.allCredits.creditCard.badges.noCollateral}
+              </span>
                   )}
                 </div>
               </div>
-
-              {/* Main Stats */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mt-8">
+              {/* Stats grid */}
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-6">
                 <div className="bg-white/20 backdrop-blur-md rounded-xl p-5 border-2 border-white/30 shadow-xl hover:bg-white/25 transition-all">
                   <div className="flex items-center gap-2 mb-3">
                     <Wallet className="w-6 h-6 text-white drop-shadow" />
@@ -142,7 +147,6 @@ export default function CreditDetailPage({ credit, lang }: CreditDetailPageProps
                     {credit.minAmount.toLocaleString()} - {credit.maxAmount.toLocaleString()} ₴
                   </div>
                 </div>
-
                 <div className="bg-white/20 backdrop-blur-md rounded-xl p-5 border-2 border-white/30 shadow-xl hover:bg-white/25 transition-all">
                   <div className="flex items-center gap-2 mb-3">
                     <Percent className="w-6 h-6 text-white drop-shadow" />
@@ -152,17 +156,15 @@ export default function CreditDetailPage({ credit, lang }: CreditDetailPageProps
                     {credit.minRate}%
                   </div>
                 </div>
-
                 <div className="bg-white/20 backdrop-blur-md rounded-xl p-5 border-2 border-white/30 shadow-xl hover:bg-white/25 transition-all">
                   <div className="flex items-center gap-2 mb-3">
                     <Calendar className="w-6 h-6 text-white drop-shadow" />
                     <span className="text-white font-bold text-sm uppercase tracking-wide">{dict.allCredits.creditCard.term}</span>
                   </div>
                   <div className="text-2xl font-black text-white drop-shadow-lg">
-                    {credit.minTerm} - {credit.maxTerm} {lang === 'uk' ? 'міс' : 'мес'}
+                    до {credit.maxTerm}{lang === 'uk' ? 'міс' : 'мес'}
                   </div>
                 </div>
-
                 <div className="bg-white/20 backdrop-blur-md rounded-xl p-5 border-2 border-white/30 shadow-xl hover:bg-white/25 transition-all">
                   <div className="flex items-center gap-2 mb-3">
                     <Clock className="w-6 h-6 text-white drop-shadow" />
@@ -173,29 +175,28 @@ export default function CreditDetailPage({ credit, lang }: CreditDetailPageProps
                   </div>
                 </div>
               </div>
-
               {/* CTA Buttons */}
-              <div className="flex flex-col sm:flex-row gap-4 mt-8">
+              <div className="flex flex-col md:flex-row gap-3 md:gap-4 mt-6">
                 <a
-                  href={credit.creditUrl || credit.website}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex-1 bg-gradient-to-r from-yellow-400 via-orange-400 to-yellow-400 text-gray-900 px-8 py-5 rounded-xl font-black text-xl hover:from-yellow-300 hover:via-orange-300 hover:to-yellow-300 hover:scale-105 transition-all shadow-2xl hover:shadow-3xl flex items-center justify-center gap-3 border-4 border-yellow-300/50"
-                >
-                  <CreditCard className="w-7 h-7" />
-                  {dict.allCredits.creditCard.apply}
-                </a>
-                {credit.website && (
-                  <a
                     href={credit.creditUrl || credit.website}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex-1 bg-white/30 backdrop-blur-md border-4 border-white/60 text-white px-8 py-5 rounded-xl font-black text-xl hover:bg-white/40 hover:scale-105 transition-all shadow-2xl flex items-center justify-center gap-3"
-                  >
-                    <Globe className="w-7 h-7" />
-                    {lang === 'uk' ? 'Відвідати сайт' : 'Посетить сайт'}
-                    <ExternalLink className="w-5 h-5" />
-                  </a>
+                    className="flex-1 bg-gradient-to-r from-yellow-400 via-orange-400 to-yellow-400 text-gray-900 px-6 py-4 rounded-xl font-black text-lg hover:from-yellow-300 hover:via-orange-300 hover:to-yellow-300 hover:scale-105 transition-all shadow-2xl hover:shadow-3xl flex items-center justify-center gap-3 border-4 border-yellow-300/50"
+                >
+                  <CreditCard className="w-6 h-6" />
+                  {dict.allCredits.creditCard.apply}
+                </a>
+                {credit.website && (
+                    <a
+                        href={credit.creditUrl || credit.website}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex-1 bg-white/30 backdrop-blur-md border-4 border-white/60 text-white px-6 py-4 rounded-xl font-black text-lg hover:bg-white/40 hover:scale-105 transition-all shadow-2xl flex items-center justify-center gap-3"
+                    >
+                      <Globe className="w-6 h-6" />
+                      {lang === 'uk' ? 'Відвідати сайт' : 'Посетить сайт'}
+                      <ExternalLink className="w-5 h-5" />
+                    </a>
                 )}
               </div>
             </div>

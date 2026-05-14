@@ -46,12 +46,12 @@ export default function NoviMfoPageClient({ lang }: NoviMfoPageClientProps) {
 
   const filteredLoans = useMemo(() => {
     let results = LOAN_PRODUCTS;
-    results = results.filter(loan => loanAmount >= loan.minAmount && loanAmount <= loan.maxAmount);
-    results = results.filter(loan => loanTerm >= loan.minTerm && loanTerm <= loan.maxTerm);
-    if (selectedLenders.length > 0) {
-      results = results.filter(loan => selectedLenders.includes(loan.lender));
-    }
-    results = results.filter(loan => loan.interestRateValue >= minRate && loan.interestRateValue <= maxRate);
+    // results = results.filter(loan => loanAmount >= loan.minAmount && loanAmount <= loan.maxAmount);
+    // results = results.filter(loan => loanTerm >= loan.minTerm && loanTerm <= loan.maxTerm);
+    // if (selectedLenders.length > 0) {
+    //   results = results.filter(loan => selectedLenders.includes(loan.lender));
+    // }
+    // results = results.filter(loan => loan.interestRateValue >= minRate && loan.interestRateValue <= maxRate);
     return results;
   }, [loanAmount, loanTerm, selectedLenders, minRate, maxRate]);
 
@@ -59,12 +59,12 @@ export default function NoviMfoPageClient({ lang }: NoviMfoPageClientProps) {
     const counts: Record<string, number> = {};
     lenders.forEach(lender => {
       const count = LOAN_PRODUCTS.filter(loan =>
-        loanAmount >= loan.minAmount &&
-        loanAmount <= loan.maxAmount &&
-        loanTerm >= loan.minTerm &&
-        loanTerm <= loan.maxTerm &&
-        loan.interestRateValue >= minRate &&
-        loan.interestRateValue <= maxRate &&
+        // loanAmount >= loan.minAmount &&
+        // loanAmount <= loan.maxAmount &&
+        // loanTerm >= loan.minTerm &&
+        // loanTerm <= loan.maxTerm &&
+        // loan.interestRateValue >= minRate &&
+        // loan.interestRateValue <= maxRate &&
         loan.lender === lender
       ).length;
       counts[lender] = count;
@@ -449,7 +449,7 @@ export default function NoviMfoPageClient({ lang }: NoviMfoPageClientProps) {
                               </span>
                             </div>
                             <div className="text-lg font-bold text-gray-900">
-                              {loan.minTerm} - {loan.maxTerm} {lang === 'uk' ? 'днів' : 'дней'}
+                              до {loan.maxTerm} {lang === 'uk' ? 'днів' : 'дней'}
                             </div>
                           </div>
 

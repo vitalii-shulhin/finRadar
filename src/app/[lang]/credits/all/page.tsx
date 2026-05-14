@@ -315,34 +315,34 @@ export default function AllCreditsPage({
 
                   <div className="p-6 space-y-6">
                     {/* Credit Type Filter */}
-                    <div>
-                      <h3 className="text-sm font-bold mb-4 text-gray-700 uppercase tracking-wide">
-                        {dict.allCredits.filters.creditType}
-                      </h3>
-                      <div className="space-y-2">
-                        {[
-                          { value: 'all', label: dict.allCredits.creditTypes.all },
-                          { value: 'online', label: dict.allCredits.creditTypes.online },
-                          { value: 'cash', label: dict.allCredits.creditTypes.cash },
-                          { value: 'microcredit', label: dict.allCredits.creditTypes.microcredit },
-                          { value: 'credit-line', label: dict.allCredits.creditTypes.creditLine },
-                          { value: 'refinancing', label: dict.allCredits.creditTypes.refinancing },
-                          { value: 'secured', label: dict.allCredits.creditTypes.secured },
-                        ].map((type) => (
-                          <button
-                            key={type.value}
-                            onClick={() => setSelectedType(type.value as CreditType)}
-                            className={`w-full text-left px-4 py-2.5 rounded-xl font-bold transition-all ${
-                              selectedType === type.value
-                                ? 'bg-rose-500 text-white shadow-lg'
-                                : 'bg-gray-50 text-gray-700 hover:bg-gray-100'
-                            }`}
-                          >
-                            {type.label}
-                          </button>
-                        ))}
-                      </div>
-                    </div>
+                    {/*<div>*/}
+                    {/*  <h3 className="text-sm font-bold mb-4 text-gray-700 uppercase tracking-wide">*/}
+                    {/*    {dict.allCredits.filters.creditType}*/}
+                    {/*  </h3>*/}
+                    {/*  <div className="space-y-2">*/}
+                    {/*    {[*/}
+                    {/*      { value: 'all', label: dict.allCredits.creditTypes.all },*/}
+                    {/*      { value: 'online', label: dict.allCredits.creditTypes.online },*/}
+                    {/*      { value: 'cash', label: dict.allCredits.creditTypes.cash },*/}
+                    {/*      { value: 'microcredit', label: dict.allCredits.creditTypes.microcredit },*/}
+                    {/*      { value: 'credit-line', label: dict.allCredits.creditTypes.creditLine },*/}
+                    {/*      { value: 'refinancing', label: dict.allCredits.creditTypes.refinancing },*/}
+                    {/*      { value: 'secured', label: dict.allCredits.creditTypes.secured },*/}
+                    {/*    ].map((type) => (*/}
+                    {/*      <button*/}
+                    {/*        key={type.value}*/}
+                    {/*        onClick={() => setSelectedType(type.value as CreditType)}*/}
+                    {/*        className={`w-full text-left px-4 py-2.5 rounded-xl font-bold transition-all ${*/}
+                    {/*          selectedType === type.value*/}
+                    {/*            ? 'bg-rose-500 text-white shadow-lg'*/}
+                    {/*            : 'bg-gray-50 text-gray-700 hover:bg-gray-100'*/}
+                    {/*        }`}*/}
+                    {/*      >*/}
+                    {/*        {type.label}*/}
+                    {/*      </button>*/}
+                    {/*    ))}*/}
+                    {/*  </div>*/}
+                    {/*</div>*/}
 
                     {/* Min Amount Filter */}
                     <div>

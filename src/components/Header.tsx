@@ -281,7 +281,7 @@ export default function Header({ lang }: HeaderProps) {
             </button>
 
             {showCreditsDropdown && (
-              <div className="absolute top-full left-0 pt-2 w-72 bg-white rounded-xl shadow-2xl border border-gray-200 py-2 animate-fadeIn">
+              <div className="absolute top-full left-0 pt-2 w-72 max-h-[80vh] overflow-y-auto bg-white rounded-xl shadow-2xl border border-gray-200 py-2 animate-fadeIn z-50">
                 {creditOptions.map((option, index) => (
                   <Link
                     key={index}
@@ -325,7 +325,7 @@ export default function Header({ lang }: HeaderProps) {
             </button>
 
             {showInsuranceDropdown && (
-              <div className="absolute top-full left-0 pt-2 w-72 bg-white rounded-xl shadow-2xl border border-gray-200 py-2 animate-fadeIn">
+              <div className="absolute top-full left-0 pt-2 w-72 max-h-[80vh] overflow-y-auto bg-white rounded-xl shadow-2xl border border-gray-200 py-2 animate-fadeIn z-50">
                 {insuranceOptions.map((option, index) => (
                   <Link
                     key={index}

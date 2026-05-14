@@ -49,16 +49,16 @@ export default function MicrocreditsPage({ lang }: MicrocreditsPageProps) {
   const filteredProducts = useMemo(() => {
     let results = MICROCREDIT_PRODUCTS;
 
-    results = results.filter(p => loanAmount >= p.minAmount && loanAmount <= p.maxAmount);
-    results = results.filter(p => loanTerm >= p.minTerm && loanTerm <= p.maxTerm);
-
-    if (selectedLenders.length > 0) {
-      results = results.filter(p => selectedLenders.includes(p.lender));
-    }
-
-    if (onlyFirstFree) {
-      results = results.filter(p => p.firstLoanFree);
-    }
+    // results = results.filter(p => loanAmount >= p.minAmount && loanAmount <= p.maxAmount);
+    // results = results.filter(p => loanTerm >= p.minTerm && loanTerm <= p.maxTerm);
+    //
+    // if (selectedLenders.length > 0) {
+    //   results = results.filter(p => selectedLenders.includes(p.lender));
+    // }
+    //
+    // if (onlyFirstFree) {
+    //   results = results.filter(p => p.firstLoanFree);
+    // }
 
     return results;
   }, [loanAmount, loanTerm, selectedLenders, onlyFirstFree]);
@@ -486,7 +486,7 @@ export default function MicrocreditsPage({ lang }: MicrocreditsPageProps) {
                         <div className="bg-gradient-to-br from-purple-50 to-indigo-50 p-3 rounded-xl border border-purple-100">
                           <div className="text-xs text-gray-600 mb-1 font-medium">Термін</div>
                           <div className="font-bold text-purple-600 text-sm">
-                            {product.minTerm}-{product.maxTerm} днів
+                            до {product.maxTerm} днів
                           </div>
                         </div>
                         <div className="bg-gradient-to-br from-orange-50 to-red-50 p-3 rounded-xl border border-orange-100">
