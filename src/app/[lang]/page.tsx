@@ -56,7 +56,7 @@ export default function Home({
       {/* Currency Rates - Premium Floating Design */}
       <section className="relative mt-16 z-20">
         <div className="container-custom">
-          <div className="backdrop-blur-xl bg-white/90 rounded-3xl shadow-2xl border border-white/50 p-8 relative overflow-hidden">
+          <div className="backdrop-blur-xl bg-white/90 rounded-3xl shadow-2xl border border-white/50 relative overflow-hidden">
             {/* Decorative corner accent */}
             <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-primary/5 to-transparent rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
             <div className="relative z-10">
