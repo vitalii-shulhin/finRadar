@@ -568,7 +568,7 @@ export default function AllCreditsPage({
                                     <span className="text-xs font-bold text-gray-600 uppercase">{dict.allCredits.creditCard.term}</span>
                                   </div>
                                   <div className="text-lg font-black text-slate-900">
-                                    {`${credit.minTerm} ${dict.allCredits.creditCard.days}`} - {credit.maxTerm > 12 ? `${credit.maxTerm} ${dict.allCredits.creditCard.days}` : `${credit.maxTerm} ${dict.allCredits.creditCard.months}`}
+                                    до {credit.maxTerm > 12 ? `${credit.maxTerm} ${dict.allCredits.creditCard.days}` : `${credit.maxTerm} ${dict.allCredits.creditCard.months}`}
                                   </div>
                                 </div>
 
