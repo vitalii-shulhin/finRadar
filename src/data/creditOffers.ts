@@ -151,7 +151,7 @@ export const CREDIT_OFFERS_BASE: Omit<CreditOffer, 'id'>[] = [
     reviews: 4521,
     minAmount: 500,
     maxAmount: 50000,
-    minRate: 360.05,
+    minRate: 0.1,
     // maxRate: 1.8,
     minTerm: 5,
     maxTerm: 365,

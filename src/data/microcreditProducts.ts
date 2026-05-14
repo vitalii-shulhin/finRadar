@@ -208,7 +208,6 @@ export const MICROCREDIT_PRODUCTS_BASE: Omit<MicrocreditProduct, 'id'>[] = [
     rating: 4.7,
     reviews: 4521,
     features: [
-      '2 989,62% Реальна річна процентна ставка',
       'Працевлаштування не обов\'язково',
       'Гроші за 14 хвилин',
       'Можна з поганою кредитною історією',

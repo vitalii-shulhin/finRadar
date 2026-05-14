@@ -423,11 +423,11 @@ export default function InsurancePage({
               </div>
             </div>
 
-            <h2 className="text-5xl font-black text-white mb-6 tracking-tight leading-tight">
+            <h2 className="text-2xl sm:text-3xl md:text-5xl font-black text-white mb-6 tracking-tight leading-tight">
               {dict.insurance.cta.title1}<br />{dict.insurance.cta.title2}
             </h2>
 
-            <p className="text-xl text-gray-300 mb-10 max-w-2xl mx-auto font-medium leading-relaxed">
+            <p className="text-sm md:text-sm   text-gray-300 mb-10 max-w-2xl mx-auto font-medium leading-relaxed">
               {dict.insurance.cta.description}
             </p>
 

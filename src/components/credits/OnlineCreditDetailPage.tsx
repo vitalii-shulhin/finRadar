@@ -88,11 +88,11 @@ export default function OnlineCreditDetailPage({ product, lang }: OnlineCreditDe
                     </div>
                     {/* Text Info */}
                     <div className="text-center sm:text-left">
-                      <div className="text-white/80 text-xs sm:text-sm font-bold uppercase tracking-wider mb-1">
-                        {lang === 'uk' ? 'Онлайн кредит' : 'Онлайн кредит'}
-                      </div>
+                      {/*<div className="text-white/80 text-xs sm:text-sm font-bold uppercase tracking-wider mb-1">*/}
+                      {/*  {lang === 'uk' ? 'Онлайн кредит' : 'Онлайн кредит'}*/}
+                      {/*</div>*/}
                       <h1 className="text-2xl sm:text-3xl md:text-5xl font-black text-white mb-1 sm:mb-2 drop-shadow-lg">{product.lender}</h1>
-                      <p className="text-lg sm:text-xl text-white/90 font-semibold mb-2 sm:mb-3">{product.productName}</p>
+                      {/*<p className="text-lg sm:text-xl text-white/90 font-semibold mb-2 sm:mb-3">{product.productName}</p>*/}
                       <div className="flex flex-wrap items-center justify-center sm:justify-start gap-2">
                         <div className="flex items-center gap-1 bg-yellow-400 px-2 sm:px-3 py-1 rounded-full">
                           <Star className="w-4 h-4 text-orange-600 fill-orange-600" />

@@ -581,7 +581,7 @@ export default function OsagoLocationPage({ city, lang }: OsagoLocationPageProps
                       <div className="text-sm font-bold text-white/70 uppercase tracking-wider mb-2">
                         {dict.osago.calculator.estimatedPrice}
                       </div>
-                      <div className="text-5xl font-black text-white mb-4">
+                      <div className="text-2xl sm:text-3xl md:text-5xl font-black text-white mb-4">
                         {estimatedPrice.toLocaleString()} ₴
                       </div>
                       <p className="text-white/60 text-sm font-medium max-w-2xl mx-auto">

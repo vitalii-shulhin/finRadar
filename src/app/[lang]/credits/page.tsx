@@ -98,10 +98,10 @@ export default function CreditsPage({
       {/* Header */}
       <div className="bg-gradient-to-r from-primary to-primary-dark text-white py-16">
         <div className="container-custom text-center">
-          <h1 className="text-5xl font-bold font-heading mb-4">
+          <h1 className="text-2xl sm:text-3xl md:text-5xl font-bold font-heading mb-4">
             {dict.credits.title}
           </h1>
-          <p className="text-xl text-blue-100 max-w-2xl mx-auto">
+          <p className="text-sm md:text-sm   text-blue-100 max-w-2xl mx-auto">
             {dict.credits.subtitle}
           </p>
         </div>

@@ -27,8 +27,8 @@ export default function RefinancingPage() {
               <Repeat className="w-10 h-10" />
             </div>
             <div>
-              <h1 className="text-5xl font-black mb-2">Рефінансування кредитів</h1>
-              <p className="text-xl text-blue-100">Зменште платіж • Знизьте ставку • Об'єднайте кредити</p>
+              <h1 className="text-2xl sm:text-3xl md:text-5xl font-black mb-2">Рефінансування кредитів</h1>
+              <p className="text-sm md:text-sm   text-blue-100">Зменште платіж • Знизьте ставку • Об'єднайте кредити</p>
             </div>
           </div>
 

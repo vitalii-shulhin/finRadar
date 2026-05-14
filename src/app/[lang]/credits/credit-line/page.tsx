@@ -27,8 +27,8 @@ export default function CreditLinePage() {
               <RefreshCw className="w-10 h-10" />
             </div>
             <div>
-              <h1 className="text-5xl font-black mb-2">Кредитна лінія</h1>
-              <p className="text-xl text-blue-100">Гнучке фінансування • Використовуйте кошти за потребою</p>
+              <h1 className="text-2xl sm:text-3xl md:text-5xl font-black mb-2">Кредитна лінія</h1>
+              <p className="text-sm md:text-sm   text-blue-100">Гнучке фінансування • Використовуйте кошти за потребою</p>
             </div>
           </div>
 

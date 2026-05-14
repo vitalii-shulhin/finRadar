@@ -409,10 +409,10 @@ export default function KaskoPageContent({ lang }: { lang: Locale }) {
               {/* Estimated Price */}
               <div className="bg-gradient-to-r from-blue-600 to-indigo-600 rounded-2xl p-6 text-center">
                 <div className="text-blue-100 font-bold mb-2">{dict.kasko.calculator.estimatedPrice}</div>
-                <div className="text-5xl font-black text-white mb-4">
+                <div className="text-2xl sm:text-3xl md:text-5xl font-black text-white mb-4">
                   {estimatedPrice.toLocaleString()} ₴
                 </div>
-                <p className="text-sm text-blue-100 font-medium">
+                <p className="text-sm md:text-sm  text-blue-100 font-medium">
                   {dict.kasko.calculator.disclaimer}
                 </p>
               </div>

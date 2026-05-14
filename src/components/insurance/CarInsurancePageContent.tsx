@@ -474,7 +474,7 @@ export default function CarInsurancePageContent({ lang }: CarInsurancePageProps)
                             <div className="text-sm font-bold uppercase tracking-widest opacity-90 mb-2">
                               {dict.carInsurance.calculator.estimatedPrice}
                             </div>
-                            <div className="text-5xl font-black">
+                            <div className="text-2xl sm:text-3xl md:text-5xl font-black">
                               {estimatedPrice.toLocaleString('uk-UA')} ₴
                             </div>
                             <div className="text-sm opacity-75 mt-2">

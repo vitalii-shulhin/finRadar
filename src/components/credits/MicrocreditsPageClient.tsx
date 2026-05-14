@@ -149,10 +149,10 @@ export default function MicrocreditsPage({ lang }: MicrocreditsPageProps) {
               <Zap className="w-10 h-10 text-white" />
             </div>
             <div className="flex-1">
-              <h1 className="text-5xl font-black mb-3 tracking-tight">
+              <h1 className="text-2xl sm:text-3xl md:text-5xl font-black mb-3 tracking-tight">
                 Мікрокредити
               </h1>
-              <p className="text-xl text-blue-100 max-w-2xl leading-relaxed">
+              <p className="text-sm md:text-sm   text-blue-100 max-w-2xl leading-relaxed">
                 Швидкі гроші від 100 до 5000 грн за 2 хвилини • Перший кредит безкоштовно
               </p>
             </div>

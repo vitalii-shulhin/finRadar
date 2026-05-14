@@ -27,8 +27,8 @@ export default function SecuredCreditsPage() {
               <Lock className="w-10 h-10" />
             </div>
             <div>
-              <h1 className="text-5xl font-black mb-2">Кредити під заставу</h1>
-              <p className="text-xl text-orange-100">Великі суми • Низькі ставки • Довгі терміни</p>
+              <h1 className="text-2xl sm:text-3xl md:text-5xl font-black mb-2">Кредити під заставу</h1>
+              <p className="text-sm md:text-sm   text-orange-100">Великі суми • Низькі ставки • Довгі терміни</p>
             </div>
           </div>
 
