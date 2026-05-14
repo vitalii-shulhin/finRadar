@@ -244,7 +244,7 @@ export default function Header({ lang }: HeaderProps) {
             {/* Mobile Phone Number */}
             <div className="pt-4 mt-4 border-t border-gray-200">
               <a
-                href="tel:0800307555"
+                href="mailto:finradar24@gmail.com"
                 className="flex items-center gap-2 px-4 py-3 text-primary hover:bg-gray-100 font-semibold rounded-lg transition-colors"
                 onClick={closeMobileMenu}
               >
