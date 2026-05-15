@@ -6,6 +6,7 @@ import { CreditCard, Filter, Star, TrendingUp, Gift, Percent, Calendar, Shield, 
 import { type Locale } from '@/i18n/config';
 import { getDictionary } from '@/i18n/dictionaries';
 import { CREDIT_CARDS_RATING as CARDS_DATA } from '@/data/cards';
+import Image from "next/image";
 
 type SortOption = 'rating' | 'cashback' | 'limit' | 'gracePeriod';
 
@@ -53,7 +54,7 @@ export default function CreditCardsRatingPage({
   const banks = Array.from(new Set(CARDS_DATA.map(card => card.bank)));
 
   const filteredCards = CARDS_DATA.filter(card => {
-    if (selectedBanks.length > 0 && !selectedBanks.includes(card.bank)) return false;
+    // if (selectedBanks.length > 0 && !selectedBanks.includes(card.bank)) return false;
     return true;
   });
 
@@ -322,9 +323,13 @@ export default function CreditCardsRatingPage({
                         {/* Card Header - Magazine Style with Rank */}
                         <div className="flex items-start justify-between mb-6">
                           <div className="flex items-start gap-6 flex-1">
-                            <div className={`w-20 h-20 bg-gradient-to-br ${card.color} rounded-2xl flex items-center justify-center text-4xl shadow-2xl transform group-hover:scale-110 group-hover:rotate-3 transition-all duration-300`}>
-                              {card.bankLogo}
-                            </div>
+                            <Image
+                                src={card.bankLogo}
+                                alt={`${card.bank} logo`}
+                                width={256}
+                                height={150}
+                                className="object-contain"
+                            />
                             <div className="flex-1">
                               <div className="flex items-center gap-3 mb-3 flex-wrap">
                                 {getRankBadge(card.position)}

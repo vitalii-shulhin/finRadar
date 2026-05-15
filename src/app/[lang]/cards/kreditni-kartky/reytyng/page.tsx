@@ -54,7 +54,7 @@ export default function CreditCardsRatingPage({
   const banks = Array.from(new Set(CARDS_DATA.map(card => card.bank)));
 
   const filteredCards = CARDS_DATA.filter(card => {
-    if (selectedBanks.length > 0 && !selectedBanks.includes(card.bank)) return false;
+    // if (selectedBanks.length > 0 && !selectedBanks.includes(card.bank)) return false;
     return true;
   });
 
@@ -187,7 +187,7 @@ export default function CreditCardsRatingPage({
                         {dict.cards.filters}
                       </h2>
                       <div className="flex items-center gap-3">
-                        <button
+                        <div
                           onClick={(e) => {
                             e.stopPropagation();
                             setSelectedBanks([]);
@@ -195,7 +195,7 @@ export default function CreditCardsRatingPage({
                           className="text-xs text-white/70 hover:text-white font-bold uppercase tracking-wider"
                         >
                           {dict.cards.clearFilters}
-                        </button>
+                        </div>
                         {showFilterPanel ? (
                           <ChevronUp className="w-5 h-5 text-white" />
                         ) : (

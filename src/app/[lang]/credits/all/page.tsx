@@ -64,7 +64,7 @@ export default function AllCreditsPage({
     const bankKey = credit.bank.toLowerCase().replace(/\s/g, '').replace('банк', 'bank');
     const typeKey = credit.type === 'credit-line' ? 'creditLine' : credit.type;
     const offers = dict.allCredits.offers as any;
-    console.log(bankKey)
+
     return {
       ...credit,
       typeName: dict.allCredits.typeNames[typeKey],

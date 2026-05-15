@@ -24,7 +24,7 @@ export default function CreditCardsNoRefusalPage({
   const banks = Array.from(new Set(CARDS_DATA.map(card => card.bank)));
 
   const filteredCards = CARDS_DATA.filter(card => {
-    if (selectedBanks.length > 0 && !selectedBanks.includes(card.bank)) return false;
+    // if (selectedBanks.length > 0 && !selectedBanks.includes(card.bank)) return false;
     return true;
   });
 

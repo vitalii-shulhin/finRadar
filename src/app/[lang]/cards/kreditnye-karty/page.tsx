@@ -6,6 +6,7 @@ import { CreditCard, Filter, Star, TrendingUp, Gift, Percent, Calendar, Shield, 
 import { type Locale } from '@/i18n/config';
 import { getDictionary } from '@/i18n/dictionaries';
 import { CREDIT_CARDS_DATA as CARDS_DATA } from '@/data/cards';
+import Image from "next/image";
 
 type SortOption = 'popular' | 'cashback' | 'limit' | 'rate';
 
@@ -309,9 +310,13 @@ export default function CreditCardsPage({
                         {/* Card Header - Magazine Style */}
                         <div className="flex items-start justify-between mb-6">
                           <div className="flex items-start gap-6 flex-1">
-                            <div className={`w-20 h-20 bg-gradient-to-br ${card.color} rounded-2xl flex items-center justify-center text-4xl shadow-2xl transform group-hover:scale-110 group-hover:rotate-3 transition-all duration-300`}>
-                              {card.bankLogo}
-                            </div>
+                            <Image
+                                src={card.bankLogo}
+                                alt={`${card.bank} logo`}
+                                width={256}
+                                height={150}
+                                className="object-contain"
+                            />
                             <div className="flex-1">
                               <div className="flex items-center gap-3 mb-2 flex-wrap">
                                 <h3 className="text-2xl font-black text-slate-900">

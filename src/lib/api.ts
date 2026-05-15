@@ -68,7 +68,6 @@ export async function getNewsDataNews(limit: number = 20): Promise<NewsArticle[]
     const NEWSDATA_API_KEY = process.env.NEWSDATA_API_KEY || process.env.NEXT_PUBLIC_NEWSDATA_API_KEY || '';
 
     if (!NEWSDATA_API_KEY) {
-      console.log('No NewsData.io API key found');
       return [];
       // return getMockUkrainianNews(limit);
     }
@@ -126,10 +125,8 @@ export async function getNewsDataNews(limit: number = 20): Promise<NewsArticle[]
 export async function getUkrainianNews(limit: number = 20): Promise<NewsArticle[]> {
   try {
     const NEWS_API_KEY = process.env.NEWS_API_KEY || process.env.NEXT_PUBLIC_NEWS_API_KEY || '';
-    console.log('NEWS_API_KEY', NEWS_API_KEY)
+
     if (!NEWS_API_KEY) {
-      // console.log('No NewsAPI key found, returning mock Ukrainian news');
-      // return getMockUkrainianNews(limit);
       return [];
     }
 
@@ -145,8 +142,6 @@ export async function getUkrainianNews(limit: number = 20): Promise<NewsArticle[
       timeout: 10000
     });
 
-    console.log('response', response.data)
-
 
     // Transform to match our NewsArticle interface
     if (response.data && response.data.articles && response.data.articles.length > 0) {
@@ -160,7 +155,6 @@ export async function getUkrainianNews(limit: number = 20): Promise<NewsArticle[
         url: article.url
       }));
 
-      // console.log(`Fetched ${transformedNews.length} Ukrainian news articles from NewsAPI`);
       return transformedNews;
     }
 
@@ -168,7 +162,7 @@ export async function getUkrainianNews(limit: number = 20): Promise<NewsArticle[
     // console.log('NewsAPI returned no articles, using mock news');
     return [];
   } catch (error) {
-    // console.error('Error fetching Ukrainian news:', error); // todo
+     // todo
     return [];
   }
 }

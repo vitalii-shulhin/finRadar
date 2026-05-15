@@ -54,7 +54,7 @@ export const CARDS_DATA: BankCard[] = [
     highApproval: true,
     approvalRate: '88%',
     color: 'from-red-500 to-red-600',
-    position: 2,
+    position: 1,
     cardUrl: 'https://rdr.fmcgsd.net/in/offer/1515?aid=91780&source=generalbankua&',
     essential_characteristics: 'https://rdr.fmcgsd.net/in/offer/1515?aid=91780&source=generalbankua&',
     warning: 'https://rdr.fmcgsd.net/in/offer/1515?aid=91780&source=generalbankua&',
@@ -73,6 +73,8 @@ export const CARDS_DATA: BankCard[] = [
     interestRate: '36% річних',
     rating: 4.6,
     reviews: 543,
+    position: 2,
+    highApproval: true,
     features: [
       'До 92 днів без відсотків',
       'До 62 днів на зняття готівки та перекази',
@@ -101,6 +103,8 @@ export const CARDS_DATA: BankCard[] = [
     interestRate: '52% річних (54.77% реальна річна ставка)',
     rating: 4.3,
     reviews: 412,
+    position: 3,
+    highApproval: true,
     features: [
       'До 62 днів без відсотків',
       'Кешбек 1.5% на всі операції',
@@ -127,6 +131,8 @@ export const CARDS_DATA: BankCard[] = [
     interestRate: '59,32% річних',
     rating: 4.7,
     reviews: 867,
+    position: 4,
+    highApproval: true,
     features: [
       'До 92 днів пільговий період',
       '5% повернення на залишки рахунку',
@@ -156,6 +162,8 @@ export const CARDS_DATA: BankCard[] = [
     interestRate: '59% річних',
     rating: 4.4,
     reviews: 329,
+    position: 5,
+    highApproval: true,
     features: [
       'До 62 днів без відсотків',
       'До 5% на залишок рахунку',
