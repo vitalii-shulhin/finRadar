@@ -321,8 +321,8 @@ export default function CreditCardsRatingPage({
 
                       <div className="p-8">
                         {/* Card Header - Magazine Style with Rank */}
-                        <div className="flex items-start justify-between mb-6">
-                          <div className="flex items-start gap-6 flex-1">
+                        <div className="flex flex-col sm:flex-row items-start justify-between mb-6 gap-6">
+                          <div className="flex flex-col sm:flex-row items-start gap-6 flex-1 w-full">
                             <Image
                                 src={card.bankLogo}
                                 alt={`${card.bank} logo`}

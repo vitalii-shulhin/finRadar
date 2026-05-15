@@ -168,7 +168,7 @@ export default function CreditCardsNoRefusalPage({
                         {dict.cards.filters}
                       </h2>
                       <div className="flex items-center gap-3">
-                        <button
+                        <div
                           onClick={(e) => {
                             e.stopPropagation();
                             setSelectedBanks([]);
@@ -176,7 +176,7 @@ export default function CreditCardsNoRefusalPage({
                           className="text-xs text-white/70 hover:text-white font-bold uppercase tracking-wider"
                         >
                           {dict.cards.clearFilters}
-                        </button>
+                        </div>
                         {showFilterPanel ? (
                           <ChevronUp className="w-5 h-5 text-white" />
                         ) : (
@@ -302,8 +302,8 @@ export default function CreditCardsNoRefusalPage({
 
                       <div className="p-8">
                         {/* Card Header - Magazine Style */}
-                        <div className="flex items-start justify-between mb-6">
-                          <div className="flex items-start gap-6 flex-1">
+                        <div className="flex flex-col sm:flex-row items-start justify-between mb-6 gap-6">
+                          <div className="flex flex-col sm:flex-row items-start gap-6 flex-1 w-full">
                             <Image
                                 src={card.bankLogo}
                                 alt={`${card.bank} logo`}
