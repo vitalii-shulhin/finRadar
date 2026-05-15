@@ -9,7 +9,7 @@ export async function generateMetadata({
   params: { lang: Locale };
 }): Promise<Metadata> {
   const dict = getDictionary(params.lang);
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://finradar.ua';
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://finradar.com.ua';
 
   return {
     title: dict.meta.mortgageCalculator.title,

@@ -14,9 +14,9 @@ I've set up the foundation for path-based routing (/uk/, /ru/):
 
 ### **How It Works:**
 ```
-OLD: finradar.ua/credits      (same URL, cookie-based language)
-NEW: finradar.ua/uk/credits   (Ukrainian)
-     finradar.ua/ru/credits   (Russian)
+OLD: finradar.com.ua/credits      (same URL, cookie-based language)
+NEW: ffinradar.com.ua/uk/credits   (Ukrainian)
+     finradar.com.ua/ru/credits   (Russian)
 ```
 
 ---
@@ -341,8 +341,8 @@ npm run start
 ```
 
 ### **Test Production:**
-1. Visit sitemap: `https://finradar.ua/sitemap.xml`
-2. Test URLs: `https://finradar.ua/uk`, `https://finradar.ua/ru`
+1. Visit sitemap: `https://finradar.com.ua/sitemap.xml`
+2. Test URLs: `https://finradar.com.ua/uk`, `https://finradar.com.ua/ru`
 3. Submit to Google Search Console
 4. Monitor indexing for both languages
 

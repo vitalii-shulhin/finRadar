@@ -44,7 +44,7 @@ Your FinRadar website now has:
 1. **Update Environment Variables**
    ```bash
    # In your .env.local or .env
-   NEXT_PUBLIC_SITE_URL=https://finradar.ua
+   NEXT_PUBLIC_SITE_URL=https://finradar.com.ua
    NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION=your_code_here
    ```
 

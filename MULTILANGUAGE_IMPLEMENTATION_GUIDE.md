@@ -417,7 +417,7 @@ alternates: {
 import { i18n } from '@/i18n/config';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://finradar.ua';
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://finradar.com.ua';
 
   const routes = ['', '/credits', '/cards', '/insurance', '/crypto', '/news'];
 

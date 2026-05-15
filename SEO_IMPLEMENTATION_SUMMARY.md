@@ -103,7 +103,7 @@ Unique metadata added for all major sections:
 - **File**: `.env.example` (updated)
 - **New variables**:
   ```bash
-  NEXT_PUBLIC_SITE_URL=https://finradar.ua
+  NEXT_PUBLIC_SITE_URL=https://finradar.com.ua
   NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION=your_code
   NEXT_PUBLIC_YANDEX_VERIFICATION=your_code
   ```
@@ -138,15 +138,15 @@ Unique metadata added for all major sections:
 - [ ] **Google Search Console**: https://search.google.com/search-console
   - Add property
   - Verify ownership (add NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION to .env)
-  - Submit sitemap: `https://finradar.ua/sitemap.xml`
+  - Submit sitemap: `https://finradar.com.ua/sitemap.xml`
 
 - [ ] **Bing Webmaster Tools**: https://www.bing.com/webmasters
   - Add site
   - Submit sitemap
 
 ### 2. Test SEO Implementation
-- [ ] **Robots.txt**: Visit `https://finradar.ua/robots.txt`
-- [ ] **Sitemap**: Visit `https://finradar.ua/sitemap.xml`
+- [ ] **Robots.txt**: Visit `https://finradar.com.ua/robots.txt`
+- [ ] **Sitemap**: Visit `https://finradar.com.ua/sitemap.xml`
 - [ ] **Structured Data**: Use [Rich Results Test](https://search.google.com/test/rich-results)
 - [ ] **Open Graph**: Use [Facebook Debugger](https://developers.facebook.com/tools/debug/)
 - [ ] **Twitter Cards**: Use [Twitter Card Validator](https://cards-dev.twitter.com/validator)

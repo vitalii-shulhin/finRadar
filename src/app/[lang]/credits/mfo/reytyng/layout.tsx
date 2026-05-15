@@ -8,7 +8,7 @@ export async function generateMetadata({
   params: { lang: Locale };
 }): Promise<Metadata> {
   const dict = getDictionary(params.lang);
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://finradar.ua';
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://finradar.com.ua';
 
   const title = params.lang === 'uk'
     ? 'Рейтинг МФО України 2026 | ТОП МФО - Кращі Мікрозайми України'
@@ -80,7 +80,7 @@ export default function MfoReytyngLayout({
   children: React.ReactNode;
   params: { lang: Locale };
 }) {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://finradar.ua';
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://finradar.com.ua';
 
   const structuredData = {
     '@context': 'https://schema.org',

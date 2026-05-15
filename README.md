@@ -319,8 +319,6 @@ This project is licensed under the MIT License.
 ## 📞 Support
 
 For issues and questions:
-- Email: info@finradar.ua
-- Phone: 0 800 307 555
 
 ---
 

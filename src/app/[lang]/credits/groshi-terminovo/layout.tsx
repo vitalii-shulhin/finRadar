@@ -8,7 +8,7 @@ export async function generateMetadata({
   params: { lang: Locale };
 }): Promise<Metadata> {
   const dict = getDictionary(params.lang);
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://finradar.ua';
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://finradar.com.ua';
 
   const title = params.lang === 'uk'
     ? 'Де Взяти Гроші Терміново в Україні 24/7 | Гроші на Карту Швидко 2026'
@@ -100,7 +100,7 @@ export default function GroshiTerminovoLayout({
   children: React.ReactNode;
   params: { lang: Locale };
 }) {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://finradar.ua';
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://finradar.com.ua';
 
   const structuredData = {
     '@context': 'https://schema.org',

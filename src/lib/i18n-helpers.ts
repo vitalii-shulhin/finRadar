@@ -9,7 +9,7 @@ export function getHreflangLinks(pathname: string, includeDefault = true): Array
   hrefLang: Locale | 'x-default';
   href: string;
 }> {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://finradar.ua';
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://finradar.com.ua';
 
   // Remove any existing locale from pathname
   let cleanPath = pathname;
@@ -45,7 +45,7 @@ export function getHreflangLinks(pathname: string, includeDefault = true): Array
  * Get alternate languages for sitemap
  */
 export function getAlternateLanguages(path: string) {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://finradar.ua';
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://finradar.com.ua';
 
   return Object.fromEntries(
     i18n.locales.map((locale) => [

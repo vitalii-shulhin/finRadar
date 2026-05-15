@@ -460,7 +460,7 @@ export default {
         credits: {
           value: '1,2',
           label: 'млн. кредитов',
-          description: 'оформлено через FinRadar.ua',
+          description: 'оформлено через finradar.com.ua',
         },
         amount: {
           value: '3',

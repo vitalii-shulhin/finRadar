@@ -8,7 +8,7 @@ export async function generateMetadata({
   params: { lang: Locale };
 }): Promise<Metadata> {
   const dict = getDictionary(params.lang);
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://finradar.ua';
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://finradar.com.ua';
 
   const title = params.lang === 'uk'
     ? 'Кредит з Поганою Кредитною Історією 2026 | Без Відмов 24/7'
@@ -102,7 +102,7 @@ export default function BadCreditHistoryLayout({
   children: React.ReactNode;
   params: { lang: Locale };
 }) {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://finradar.ua';
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://finradar.com.ua';
 
   const structuredData = {
     '@context': 'https://schema.org',

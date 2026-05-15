@@ -161,12 +161,12 @@ export default async function NewsDetailPage({ params, searchParams }: PageProps
       "name": "FinRadar",
       "logo": {
         "@type": "ImageObject",
-        "url": `${process.env.NEXT_PUBLIC_SITE_URL || "https://finradar.ua"}/logo.png`
+        "url": `${process.env.NEXT_PUBLIC_SITE_URL || "https://finradar.com.ua"}/logo.png`
       }
     },
     "mainEntityOfPage": {
       "@type": "WebPage",
-      "@id": `${process.env.NEXT_PUBLIC_SITE_URL || "https://finradar.ua"}/news/${slug}`
+      "@id": `${process.env.NEXT_PUBLIC_SITE_URL || "https://finradar.com.ua"}/news/${slug}`
     }
   };
 

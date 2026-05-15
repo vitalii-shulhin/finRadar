@@ -123,7 +123,7 @@ export default function AllCreditsPage({
 
   const hasActiveFilters = selectedType !== 'all' || minAmount > 0 || onlyInstant || onlyOnline;
 
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://finradar.ua';
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://finradar.com.ua';
 
   // Generate JSON-LD structured data
   const webPageSchema = {

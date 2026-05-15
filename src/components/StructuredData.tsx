@@ -4,8 +4,8 @@ export function OrganizationSchema() {
     "@type": "FinancialService",
     "name": "FinRadar",
     "description": "Фінансовий портал України - новини, курси валют, кредити, депозити та страхування",
-    "url": process.env.NEXT_PUBLIC_SITE_URL || "https://finradar.ua",
-    "logo": `${process.env.NEXT_PUBLIC_SITE_URL || "https://finradar.ua"}/logo.png`,
+    "url": process.env.NEXT_PUBLIC_SITE_URL || "https://finradar.com.ua",
+    "logo": `${process.env.NEXT_PUBLIC_SITE_URL || "https://finradar.com.ua"}/logo.png`,
     "address": {
       "@type": "PostalAddress",
       "addressCountry": "UA",
@@ -32,12 +32,12 @@ export function WebSiteSchema() {
     "@type": "WebSite",
     "name": "FinRadar",
     "description": "Фінансовий портал України",
-    "url": process.env.NEXT_PUBLIC_SITE_URL || "https://finradar.ua",
+    "url": process.env.NEXT_PUBLIC_SITE_URL || "https://finradar.com.ua",
     "potentialAction": {
       "@type": "SearchAction",
       "target": {
         "@type": "EntryPoint",
-        "urlTemplate": `${process.env.NEXT_PUBLIC_SITE_URL || "https://finradar.ua"}/search?q={search_term_string}`
+        "urlTemplate": `${process.env.NEXT_PUBLIC_SITE_URL || "https://finradar.com.ua"}/search?q={search_term_string}`
       },
       "query-input": "required name=search_term_string"
     }

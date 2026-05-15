@@ -18,7 +18,7 @@ const raleway = Raleway({
 
 // Minimal root metadata - language-specific metadata is in [lang]/layout.tsx
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://finradar.ua'),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://finradar.com.ua'),
   icons: {
     icon: [
       { url: '/favicon.svg', type: 'image/svg+xml' },
